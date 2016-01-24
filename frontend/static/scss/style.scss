@@ -1,0 +1,109 @@
+$bgColor: #fff;
+$pageTopPadding: 20px;
+$headerColor: #555;
+$grayOutColor: #aeaeae;
+$textColor: #555;
+$menuColor: #428BCA;
+
+.col-md-8 {
+  background: $bgColor;
+  padding-top: $pageTopPadding;
+
+}
+.col-md-4 {
+  background: $bgColor;
+  padding-top: $pageTopPadding;
+}
+
+.app-menu {
+  margin-top: 30px;
+  width: 220px;
+
+  &.nav-pills > a {
+    color: $menuColor;
+    border: 1px solid transparent;
+  }
+
+  &.nav-pills > li.active > a {
+    background: $bgColor;
+    border: 1px solid $menuColor;
+    color: $menuColor;
+  }
+}
+
+.page-header {
+  h6 {
+    font-size: 70%;
+    margin-bottom: 0px;
+    font-weight: normal;
+    color: $grayOutColor;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  h4 {
+    font-weight: normal;
+    margin: 0;
+    color: $headerColor;
+  }
+}
+
+.jumbotron {
+  p {
+    font-size: 1.3em;
+    font-style: italic;
+  }
+}
+
+.warning-label {
+  .btn {
+    display: inline;
+    margin-left: 5px;
+  }
+}
+
+
+/*****
+DASHBOARD
+******/
+#dashboard {
+  .col-md-6 {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+span.btn {
+  cursor: default;
+}
+
+.circle-chart {
+  .chart-label {
+    margin-top: 20px;
+    font-size: 1.4em;
+  }
+
+  .chart-center-label {
+    position: absolute;
+    top: 80px;
+    width: 100%;
+
+    .percent {
+      font-size: 18px;
+      color: $textColor;
+    }
+
+    .actualSpeed {
+      width: 100%;
+      height: 200px;
+      font-size: 15px;
+      color: $grayOutColor;
+    }
+    div {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
