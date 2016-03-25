@@ -53,7 +53,11 @@ var webpackFrontConfig = assign({}, webpackFrontConfig, webpackBaseConfig, {
         new HtmlWebpackPlugin({
             template: "frontend/static/index_template.html"
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ]
 });
 

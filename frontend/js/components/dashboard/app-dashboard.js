@@ -1,18 +1,24 @@
 import React from 'react';
 import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
-import {generalActions} from '../../actions/app-actions';
-import Constants from '../../constants/general';
+import {generalActions, dailyStatusAction, limitsGetAction} from '../../actions/app-actions';
+import Constants from '../../constants/events';
 import AlertSection from './alert-section-dashboard';
 import AlertTable from './alert-table';
+import LimitsTable from './limit-table';
 import SensorSection from './sensor-section';
+import DailyGraph from './daily-graph';
 
 export default class Dashboard extends React.Component {
     componentDidMount() {
         generalActions.update(Constants.PAGE_DASHBOARD);
+        dailyStatusAction.update();
+        limitsGetAction.update();
     }
 
     render() {
+
+
         return (
             <div id="dashboard">
                 <SensorSection />
@@ -21,7 +27,9 @@ export default class Dashboard extends React.Component {
 
                 <AlertTable />
 
-                <Header subtitle="graph" title="Daily water usage"/>
+                <LimitsTable />
+
+                <DailyGraph />
 
                 <Header subtitle="other" title="Page info"/>
                 <Jumbotron text="On this page can see live update for your water usage"/>

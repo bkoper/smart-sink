@@ -3,6 +3,7 @@ import Table from '../generics/table';
 import Header from '../generics/page-header';
 import {hotSensorStore, coldSensorStore} from '../../stores/sensor-stores';
 import {hotAlertStore, coldAlertStore} from '../../stores/alert-store';
+import settings from '../../stores/limits-store';
 
 export default class extends React.Component {
     constructor(props) {
@@ -25,62 +26,63 @@ export default class extends React.Component {
         coldAlertStore.removeChangeListener(this._updateTable);
     }
 
-    _updateState(newData) {
-        this.setState(newData, () => this._updateTable() );
-    }
-
     _updateTable() {
         let hotSensorData = hotSensorStore.getState();
         let coldSensorData = coldSensorStore.getState();
-        let hotAlertDate = hotAlertStore.getState();
-        let coldAlertDate = coldAlertStore.getState();
-        let tempItemList = [
-            {
-                label:"avg stream speed",
-                val1: `${hotSensorData.avg}% (27 ml/min)`,
-                val2: `${coldSensorData.avg}% (25 ml/min)`
-            },
-            {
-                label: "max stream speed",
-                val1: `${hotSensorData.max}%`,
-                val2: `${coldSensorData.max}%`
-            },
-            {
-                label: "stream limit crossed",
-                val1: `${hotSensorData.limitCrossedTimes} times`,
-                val2: `${coldSensorData.limitCrossedTimes} times`,
-                val1Info: coldAlertDate.streamLimitCrossed && "warning",
-                val2Info: hotAlertDate.streamLimitCrossed && "warning"
-            },
-            {
-                label: "longest open stream",
-                val1: `${coldAlertDate.longestOpenedMinutes}min`,
-                val2: `${hotAlertDate.longestOpenedMinutes}min`
-            },
-            {
-                label: "current daily usage",
-                val1: `${hotSensorData.dailyUsage} litres`,
-                val2: `${coldSensorData.dailyUsage} litres`,
-                val1Info: coldAlertDate.dailyUsage && "danger",
-                val2Info: hotAlertDate.dailyUsage && "danger"
-            },
-            {
-                label: "daily limit",
-                val1: "25 litres",
-                val2: "26 litres"
-            }
+        let hotAlertData = hotAlertStore.getState();
+        let coldAlertData = coldAlertStore.getState();
+        let settingsData = settings.getState();
 
+        let itemList = [
+            {
+                label: "water flown since last open",
+                val1: `${coldSensorData.currentWaterFlown} ${settingsData.units}`,
+                val2: `${hotSensorData.currentWaterFlown} ${settingsData.units}`,
+                val1Info: coldAlertData.limitPerStream && "warning",
+                val2Info: hotAlertData.limitPerStream && "warning"
+            },
+            {
+                label: "'max-usage-per-opening' crossed times",
+                val1: `${coldSensorData.limitCrossedTimes} times`,
+                val2: `${hotSensorData.limitCrossedTimes} times`,
+                val1Info: coldAlertData.limitCrossedWarning && "warning",
+                val2Info: hotAlertData.limitCrossedWarning && "warning"
+            },
+            {
+                label:"average per usage",
+                val1: `${coldSensorData.avg} ml/min`,
+                val2: `${hotSensorData.avg} ml/min`
+            },
+            {
+                label: "since last opening",
+                val1: `${coldSensorData.streamOpenTime} s`,
+                val2: `${hotSensorData.streamOpenTime} s`,
+                val1Info: coldAlertData.openTime && "warning",
+                val2Info: hotAlertData.openTime && "warning"
+            },
+            {
+                label: "longest stream",
+                val1: `${coldSensorData.longestOpenedMinutes} s`,
+                val2: `${hotSensorData.longestOpenedMinutes} s`
+            },
+            {
+                label: "today's total",
+                val1: `${coldSensorData.total} ${settingsData.units}`,
+                val2: `${hotSensorData.total} ${settingsData.units}`,
+                val1Info: coldAlertData.dailyUsage && "danger",
+                val2Info: hotAlertData.dailyUsage && "danger"
+            }
         ];
 
-        this.setState({tempItemList})
+        this.setState({itemList})
     }
 
 
     render() {
         return (
             <div>
-                <Header subtitle="live status" title="Summary table"/>
-                <Table items={this.state.tempItemList} />
+                <Header subtitle="live status" title="Today's summary"/>
+                <Table items={this.state.itemList} />
             </div>
         )
     }

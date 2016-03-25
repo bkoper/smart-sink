@@ -1,7 +1,6 @@
 import React from 'react';
 import Label from '../generics/warning-label';
 
-
 var data = [];
 
 export default (props) => {

@@ -1,51 +1,46 @@
-import socketIo from './websocket_service';
-import constants from '../../frontend/js/constants/general';
-import {coldSensor, hotSensor} from '../model/status_sensor';
+import socketIo from './../lib/websocket_service';
+import constants from '../../frontend/js/constants/events';
+import {coldSensor, hotSensor} from '../lib/fakeSensors'
+import WaterFlowSensor from '../lib/artik-suite/waterFlowSensor';
+import ArtikIO from '../lib/artik-suite/artik-io';
+import {coldStatusStore, hotStatusStore} from '../model/status_store';
 import helpers from '../helpers/generics';
 
 export default {
-    init(server) {
-        socketIo.init(server);
-        setInterval(this.sendSensorData, 749);
-        setInterval(this.sendDailyStats, 1230);
-        setInterval(this.warningsUpdate, 2341);
-    },
+	init() {
 
-    sendSensorData() {
-        let randomSensor = helpers.randomBool();
-        let sensor = randomSensor ? coldSensor : hotSensor;
-        let data = sensor.getData();
+		if(process.env.__demo) {
+			coldSensor.on(() => this.updateStore(coldSensor, coldStatusStore));
+			hotSensor.on(() => this.updateStore(hotSensor, hotStatusStore));
+		} else {
+			this.coldSensor = new WaterFlowSensor(ArtikIO.pins.ARTIK_10['8']);
+			this.hotSensor = new WaterFlowSensor(ArtikIO.pins.ARTIK_10['9']);
+			this.coldSensor.turnOn();
+			this.hotSensor.turnOn();
+			this.coldSensor.on(() => this.updateStore(this.coldSensor, coldStatusStore));
+			this.hotSensor.on(() => this.updateStore(this.hotSensor, hotStatusStore));
+		}
 
-        data.currentSpeed = helpers.random100();
-        data.speedPercent = helpers.random100();
+		this.setUpdateTime();
+	},
 
-        socketIo.emit(randomSensor ? constants.COLD_SENSOR_UPDATE : constants.HOT_SENSOR_UPDATE, data);
-    },
+	updateStore(sensor, store) {
+		store.setData(sensor.getData());
 
-    sendDailyStats() {
-        let randomSensor = helpers.randomBool();
-        let sensor = randomSensor ? coldSensor : hotSensor;
-        let data = sensor.getData();
+		this.isNextDay();
+	},
 
-        data.avg = helpers.random100(50);
-        data.max = helpers.random100();
-        data.limitCrossedTimes = helpers.random100(5);
-        data.dailyUsage = helpers.random100(10);
-        data.longestOpenedMinutes = helpers.random100(50);
+	isNextDay() {
+		if( (new Date()).getDay() > this.firstUpdate.getDay() ) {
+			coldSensor.reset();
+			hotSensor.reset();
+			coldStatusStore.reset();
+			hotStatusStore.reset();
+			this.setUpdateTime();
+		}
+	},
 
-        socketIo.emit(randomSensor ? constants.COLD_SENSOR_UPDATE : constants.HOT_SENSOR_UPDATE, data);
-    },
-
-    warningsUpdate() {
-        let randomSensor = helpers.randomBool();
-        let sensor = randomSensor ? coldSensor : hotSensor;
-        let data = sensor.getData();
-
-        data.streamLimit = helpers.randomBool();
-        data.streamOpenTime = helpers.randomBool();
-        data.streamLimitCrossed = helpers.randomBool();
-        data.dailyUsage = helpers.randomBool();
-
-        socketIo.emit(randomSensor ? constants.COLD_ALERTS_UPDATE : constants.HOT_ALERTS_UPDATE, data);
-    }
-}
+	setUpdateTime() {
+		this.firstUpdate = new Date();
+	}
+};

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Doughnut} from "react-chartjs";
 
-
 const chartOptions = {
     scaleShowLabelBackdrop: false,
 
@@ -35,10 +34,9 @@ const chartOptions = {
 
 
 export default props => {
+    let percentDifference = props.percent > 100 ? 0 : 100 - props.percent;
 
     const color = props.type === "cold" ? "#2DA9DB" : "#E24A5C";
-    const speed = Math.round(props.speed);
-
     const chartData = [
         {
             value: props.percent,
@@ -46,24 +44,32 @@ export default props => {
             label: props.label
         },
         {
-            value: 100 - props.percent,
-            color: "#D4D4D4",
+            value: percentDifference,
+            color: "#D4D4D4"
         }
     ];
 
     return (
         <div className="circle-chart">
             <div className="chart-center-label">
-                <div className="percent">{props.percent}%</div>
-                <div className="actualSpeed">{props.speed} ml/mi</div>
+                <div className="value1">{props.percent}%</div>
+                <div className="value2">{props.value2}</div>
             </div>
             <Doughnut
                 width={chartOptions.chartSize}
                 height={chartOptions.chartSize}
                 data={chartData}
                 options={chartOptions}
-                redraw />
+                redraw="true" />
             <div className="chart-label">{props.label}</div>
         </div>
     )
 };
+
+
+//<Doughnut
+//    width={chartOptions.chartSize}
+//    height={chartOptions.chartSize}
+//    data={chartData}
+//    options={chartOptions}
+//    redraw />

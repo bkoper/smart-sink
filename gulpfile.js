@@ -13,10 +13,10 @@ var webpackServerConfig = require("./webpack.config.base").webpackServerConfig;
 var config = require("./webpack.config.base").config;
 
 gulp.task("clean", function () {
-    del(path.join(config.BUILD_DIR, "/", "*"));
+    del(path.join(config.BUILD_DIR, "*"));
 });
 
-gulp.task("copyStatics", ["clean"], function() {
+gulp.task("copyStatics", function() {
    gulp.src("./frontend/static/img/*").pipe(gulp.dest(path.join(config.BUILD_DIR, "img")));
 });
 
@@ -29,6 +29,10 @@ gulp.task("build", ["copyStatics"], function (done) {
 
     argv.watch ? webpack(config).watch(webpackCallback)
         : webpack(config).run(webpackCallback);
+});
+
+gulp.task("watch", function () {
+    gulp.watch(["frontend/**/*"], ["build"]);
 });
 
 gulp.task("webpack-dev-server", function (callback) {

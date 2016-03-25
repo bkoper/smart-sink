@@ -79,6 +79,8 @@ span.btn {
 }
 
 .circle-chart {
+  height: 250px;
+
   .chart-label {
     margin-top: 20px;
     font-size: 1.4em;
@@ -89,12 +91,12 @@ span.btn {
     top: 80px;
     width: 100%;
 
-    .percent {
+    .value1 {
       font-size: 18px;
       color: $textColor;
     }
 
-    .actualSpeed {
+    .value2 {
       width: 100%;
       height: 200px;
       font-size: 15px;
@@ -106,4 +108,67 @@ span.btn {
       width: 100%;
     }
   }
+}
+
+.carousel {
+  .left.carousel-control, .right.carousel-control {
+    background: none;
+    top: -50px;
+  }
+
+  .left.carousel-control {
+    left: -50px;
+  }
+
+  .right.carousel-control {
+    right: -50px;
+  }
+
+  .carousel-caption {
+    top: 210px;
+    font-size: 15px;
+    color: $grayOutColor;
+    text-shadow: none;
+  }
+
+  canvas {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.dailyGraph {
+  width: 100%;
+}
+
+#settingsLimits {
+  .col-md-4 {
+    padding: 0
+  }
+
+  .col-md-3 {
+    width: 22%;
+  }
+
+  input[type=text] {
+    text-align: right;
+  }
+
+  .input-group-addon:last-child {
+    width: 70px;
+  }
+
+  margin-bottom: 20px;
+}
+
+.green {
+  color: green;
+}
+
+.yellow {
+  color: darkorange;
+}
+
+.red {
+  color: darkred;
 }
