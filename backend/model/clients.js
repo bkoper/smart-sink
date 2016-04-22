@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import webConfig from '../../frontend/js/constants/config';
+import webConfig from '../../config/config';
 
 class ClientsStore extends EventEmitter {
     constructor() {

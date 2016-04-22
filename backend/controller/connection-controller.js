@@ -1,10 +1,10 @@
 import {coldStatusStore, hotStatusStore} from '../model/status-store';
 import {coldAlertStore, hotAlertStore} from '../model/alert-store';
 import clientStore from '../model/clients';
-import constants from '../../frontend/js/constants/events';
+import constants from '../../config/events';
 import socketIo from './../lib/websocket-service';
 import {coldSami, hotSami} from '../lib/websocket-sami';
-import webConfig from '../../frontend/js/constants/config';
+import webConfig from '../../config/config';
 import units from '../helpers/unit';
 
 const SAMI_UPDATE_INTERVAL = 10 * 1000;
@@ -19,7 +19,7 @@ export default {
 
 		clientStore.on(webConfig.EVENT_CONNECTION, client => {
 			console.log("client added")
-			//socketIo.emitToOne(client, constants.LIMITS_UPDATE, limitsStore.getState());
+			//socketIo.emitToOne(client, config.LIMITS_UPDATE, limitsStore.getState());
 		});
 
 		setInterval(() => {

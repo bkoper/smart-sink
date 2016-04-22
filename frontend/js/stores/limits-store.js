@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import {EventEmitter} from 'events';
 import AppStore from './app-store.js';
-import Constants from '../constants/events';
-import Config from '../constants/config';
+import Constants from '../../../config/events';
+import Config from '../../../config/config';
 import {dispatch, register} from '../dispatchers/app-dispatcher';
 
 let url = '/rest/settings';

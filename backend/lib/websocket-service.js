@@ -1,6 +1,6 @@
 import socket from 'socket.io';
-import constants from '../../frontend/js/constants/events';
-import webConfig from '../../frontend/js/constants/config';
+import constants from '../../config/events';
+import webConfig from '../../config/config';
 import clientsStore from '../model/clients';
 
 let io;

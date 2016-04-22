@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
 import {generalActions} from '../../actions/app-actions';
-import Constants from '../../constants/events';
+import Constants from '../../../../config/events';
 import {Button, Input, Alert} from 'react-bootstrap';
 
 export default class extends React.Component {

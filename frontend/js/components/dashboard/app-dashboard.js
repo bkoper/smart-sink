@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
 import {generalActions, dailyStatusAction, limitsGetAction} from '../../actions/app-actions';
-import Constants from '../../constants/events';
+import Constants from '../../../../config/events';
 import AlertSection from './alert-section-dashboard';
 import AlertTable from './alert-table';
 import LimitsTable from './limit-table';

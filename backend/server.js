@@ -8,7 +8,7 @@ import connectionController from './controller/connection-controller';
 import ledController from './controller/led-controller';
 import alertController from './controller/alert-controller';
 import api from './model/api';
-import webConfig from '../frontend/js/constants/config';
+import webConfig from '../config/config';
 
 const host = webConfig.SERVER_IP;
 const port = webConfig.SERVER_PORT;

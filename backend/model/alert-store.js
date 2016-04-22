@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import constants from '../../frontend/js/constants/events';
+import constants from '../../config/events';
 
 class AlertStore extends EventEmitter {
     constructor(eventName) {

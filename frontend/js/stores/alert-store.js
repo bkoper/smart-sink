@@ -1,5 +1,5 @@
 import AppStore from './app-store';
-import Constants from '../constants/events';
+import Constants from '../../../config/events';
 
 let alertState = {
     limitPerStream: false,

@@ -4,7 +4,7 @@ import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
 import {generalActions, monthlyStatusAction, monthlyStatsTableAction} from '../../actions/app-actions';
 import dailyStore from '../../stores/daily-store';
-import Constants from '../../constants/events';
+import Constants from '../../../../config/events';
 import LineChart from '../generics/line-chart';
 import SummaryTable from './summary-table';
 

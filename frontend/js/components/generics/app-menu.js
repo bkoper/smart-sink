@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import GeneralStore from '../../stores/general-store';
-import Constants from '../../constants/events';
+import Constants from '../../../../config/events';
 
 export default class extends React.Component {
     constructor(props) {

@@ -1,5 +1,5 @@
 import AppStore from './app-store.js';
-import Constants from '../constants/events';
+import Constants from '../../../config/events';
 
 let sensorState = {
     speed: 0,

@@ -3,7 +3,7 @@ import {debounce} from 'lodash';
 import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
 import {generalActions, limitsGetAction, limitsSetAction} from '../../actions/app-actions';
-import Constants from '../../constants/events';
+import Constants from '../../../../config/events';
 import {Grid, Row, Col, Button, Input, Alert} from 'react-bootstrap';
 import limitsStore from '../../stores/limits-store';
 import $ from 'jquery';

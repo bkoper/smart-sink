@@ -1,6 +1,6 @@
 import {dispatch, register} from '../dispatchers/app-dispatcher';
-import Consts from '../constants/events';
-import Config from '../constants/config';
+import Consts from '../../../config/events';
+import Config from '../../../config/config';
 import {EventEmitter} from 'events';
 import $ from 'jquery';
 
