@@ -1,10 +1,7 @@
-import socketIo from './../lib/websocket_service';
-import constants from '../../frontend/js/constants/events';
-import {coldSensor, hotSensor} from '../lib/fakeSensors'
-import WaterFlowSensor from '../lib/artik-suite/waterFlowSensor';
+import {coldSensor, hotSensor} from '../lib/fake-sensors'
+import WaterFlowSensor from '../lib/artik-suite/water-flow-sensor';
 import ArtikIO from '../lib/artik-suite/artik-io';
-import {coldStatusStore, hotStatusStore} from '../model/status_store';
-import helpers from '../helpers/generics';
+import {coldStatusStore, hotStatusStore} from '../model/status-store';
 
 export default {
 	init() {

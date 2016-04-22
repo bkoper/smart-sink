@@ -1,7 +1,7 @@
 import express from 'express';
-import settings from './settings_store';
+import settings from './settings-store';
 import units from '../helpers/unit';
-import {dailyRequest, monthlyRequest, monthlyStatistics} from '../lib/request_sami';
+import {dailyRequest, monthlyRequest, monthlyStatistics} from '../lib/request-sami';
 
 let router = express.Router();
 const demoData = {

@@ -1,4 +1,4 @@
-import settings from '../model/settings_store';
+import settings from '../model/settings-store';
 
 const l2gal = 0.264172052;
 const gal2L = 3.78541178;

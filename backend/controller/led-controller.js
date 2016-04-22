@@ -1,4 +1,4 @@
-import {coldAlertStore, hotAlertStore} from '../model/alert_store';
+import {coldAlertStore, hotAlertStore} from '../model/alert-store';
 import _ from 'lodash';
 import Led from '../lib/artik-suite/led';
 import ArtikIO from '../lib/artik-suite/artik-io';
@@ -47,4 +47,4 @@ function propagate(){
     overallAlertStatus.dailyUsage ? rLed.turnOn() : rLed.turnOff();
 
     (yLed.isOn() || rLed.isOn()) ? gLed.turnOff() : gLed.turnOn();
-};
+}

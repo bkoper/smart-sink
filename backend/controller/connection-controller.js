@@ -1,11 +1,9 @@
-import StatusStore from '../model/status_store';
-import {coldStatusStore, hotStatusStore} from '../model/status_store';
-import {coldAlertStore, hotAlertStore} from '../model/alert_store';
+import {coldStatusStore, hotStatusStore} from '../model/status-store';
+import {coldAlertStore, hotAlertStore} from '../model/alert-store';
 import clientStore from '../model/clients';
 import constants from '../../frontend/js/constants/events';
-import socketIo from './../lib/websocket_service';
-import {coldSami, hotSami} from '../lib/websocket_sami';
-import limitsStore from '../model/settings_store';
+import socketIo from './../lib/websocket-service';
+import {coldSami, hotSami} from '../lib/websocket-sami';
 import webConfig from '../../frontend/js/constants/config';
 import units from '../helpers/unit';
 
@@ -35,9 +33,7 @@ export default {
 
 	sendSensorData(sensor, data) {
 		socketIo.emit(sensor, Object.assign({}, data, {
-			//currentSpeed: units.c(data.currentSpeed),
 			total: units.c(data.total),
-			//avg: units.c(data.total),
 			currentWaterFlown: units.c(data.currentWaterFlown)
 		}));
 	}

@@ -80,7 +80,7 @@ let ARTIK_5 = {
         "13": 135,
         "GND": "GND"
     }
-}
+};
 
 export default {
     pins: {

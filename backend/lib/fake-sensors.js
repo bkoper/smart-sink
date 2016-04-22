@@ -1,5 +1,4 @@
 import {EventEmitter} from 'events';
-import helpers from '../helpers/generics';
 
 const MAX_SPEED = 20;
 

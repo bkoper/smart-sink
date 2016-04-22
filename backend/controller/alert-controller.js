@@ -1,6 +1,6 @@
-import {coldStatusStore, hotStatusStore} from '../model/status_store';
-import {coldAlertStore, hotAlertStore} from '../model/alert_store';
-import limitsStore from '../model/settings_store';
+import {coldStatusStore, hotStatusStore} from '../model/status-store';
+import {coldAlertStore, hotAlertStore} from '../model/alert-store';
+import limitsStore from '../model/settings-store';
 
 export default {
     init() {

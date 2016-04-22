@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import {EventEmitter} from 'events';
 import constants from '../../frontend/js/constants/events';
 
@@ -20,10 +19,8 @@ class AlertStore extends EventEmitter {
     }
 
     setData(newData) {
-        //if(!_.isEqual(this.data, newData)) {
-            this.data = newData;
-            this.emit(this.eventName, newData);
-        //}
+        this.data = newData;
+        this.emit(this.eventName, newData);
     }
 
     getData() {

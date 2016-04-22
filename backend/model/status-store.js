@@ -1,5 +1,4 @@
-import helpers from '../helpers/generics';
-import settnigsStore from './settings_store';
+import settnigsStore from './settings-store';
 import {EventEmitter} from 'events';
 
 class StatusStore extends EventEmitter {
@@ -76,10 +75,6 @@ class StatusStore extends EventEmitter {
             streamCount: 0,
             isStreamOpen: false
         }
-    }
-
-    _setValue(ob1, attr, currentValue) {
-        ob1[attr] = currentValue > this.data[attr] ? currentValue : this.data[attr];
     }
 };
 
