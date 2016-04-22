@@ -5,7 +5,6 @@ var del = require("del");
 var path = require("path");
 var fs = require('fs');
 var argv = require("yargs").argv;
-var assign = require("lodash").assign;
 var WebpackDevServer = require("webpack-dev-server");
 
 var webpackFrontConfig = require("./webpack.config.base").webpackFrontConfig;
@@ -35,8 +34,7 @@ gulp.task("watch", function () {
     gulp.watch(["frontend/**/*"], ["build"]);
 });
 
-gulp.task("webpack-dev-server", function (callback) {
-    // modify some webpack config options
+gulp.task("webpack-dev-server", function () {
     var myConfig = Object.create(webpackFrontConfig);
     myConfig.devtool = "eval";
     myConfig.debug = true;
