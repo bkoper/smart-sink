@@ -1,7 +1,7 @@
 import {coldAlertStore, hotAlertStore} from '../model/alert-store';
 import _ from 'lodash';
-import Led from '../lib/artik-suite/led';
-import ArtikIO from '../lib/artik-suite/artik-io';
+import {Led} from 'artik-io-devices';
+import {GpioIO as ArtikIO} from 'artik-io';
 
 const interval = 100;
 

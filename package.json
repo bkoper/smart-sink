@@ -37,6 +37,8 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "artik-io": "^0.9.4",
+    "artik-io-devices": "^0.9.1",
     "bluebird": "^3.3.3",
     "body-parser": "^1.14.2",
     "bootstrap": "^3.3.6",
