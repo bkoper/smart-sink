@@ -1,6 +1,6 @@
 import {coldSensor, hotSensor} from '../lib/fake-sensors'
-import WaterFlowSensor from '../lib/artik-suite/water-flow-sensor';
-import ArtikIO from '../lib/artik-suite/artik-io';
+import {GpioIO as ArtikIO} from 'artik-io';
+import {WaterFlow as WaterFlowSensor} from 'artik-io-devices';
 import {coldStatusStore, hotStatusStore} from '../model/status-store';
 
 export default {
