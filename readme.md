@@ -4,7 +4,7 @@ Smart Sink is a platform for Artik, that lets you control your water usage by gi
 # Instalation
 
 ## Hardware
-- In terms of low level communication please refer to other my projects:
+In terms of low level communication please refer to other my projects:
 - [artik-io](https://github.com/bkoper/artik-io) - core library for communication with GPIO,
 - [artik-io-devices](https://github.com/bkoper/artik-io-devices) - abstractions for handling devices such as LED and WaterFlow sensors.
 
