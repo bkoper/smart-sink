@@ -54,7 +54,7 @@ $ npm run build:server
 ```
 $ npm start
 ```
-your application will be accessible: ```https://domain:port/```
+your application will be accessible: ```http://domain:port/```
 
 **start the application in demo mode**
 ```
