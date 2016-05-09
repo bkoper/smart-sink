@@ -1,6 +1,8 @@
 # <a href="http://devpost.com/software/smart-sink-uwh1g4"><img src='http://i.imgur.com/f7DA08T.png' height='60'></a>
 Smart Sink is a platform for Artik, that lets you control your water usage by giving light notification whenever you cross usage limits. User can monitor whether you exceed daily or current water usage. It is entirely made in JavaScript, it uses React, Flux, Node.js and express. 
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9xehBpGf2wE/0.jpg)](https://www.youtube.com/watch?v=9xehBpGf2wE)
+
 # Instalation
 
 ## Hardware
