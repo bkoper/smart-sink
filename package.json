@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build-server": "webpack --config webpack.server.config.js && node ./build/server.entry",
-    "server": "node ./build/server.entry.js",
+    "start": "node ./build/server.entry.js",
+    "build": "gulp build",
+    "build:server": "npm run build -- --server",
     "demo": "cross-env __demo=true node ./build/server.entry.js"
   },
   "author": "",

@@ -30,7 +30,7 @@ $ npm i
 ```
 
 **edit configs**
-- set IP and host at: ```./frontend/js/constsants/config.js```
+- set IP and host at: ```./config/config.js```
 - example
 ```javascript
 export default {
@@ -42,17 +42,17 @@ export default {
 
 **build front side**
 ```bash
-$ gulp build
+$ npm run build
 ```
 
 **build server side**
 ```bash
-$ gulp build --server
+$ npm run build:server
 ```
 
 **start the application**
 ```
-$ node ./build/server.entry.js
+$ npm start
 ```
 your application will be accessible: ```https://domain:port/```
 
