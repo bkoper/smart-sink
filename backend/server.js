@@ -27,6 +27,6 @@ app.use(express.static(PUBLIC_DIR));
 connectionController.init(server);
 statusContoller.init();
 alertController.init();
-ledController.init();
+!process.env.__demo && ledController.init();
 
 server.listen(port, host, () => console.log(`server runing at ${host}:${port}`));
