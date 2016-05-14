@@ -29,4 +29,4 @@ statusContoller.init();
 alertController.init();
 !process.env.__demo && ledController.init();
 
-server.listen(port, host, () => console.log(`server runing at ${host}:${port}`));
+server.listen(port, host, () => console.info(`server runing at ${host}:${port}`));

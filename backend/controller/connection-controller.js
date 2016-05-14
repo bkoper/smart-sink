@@ -18,7 +18,7 @@ export default {
 		hotAlertStore.on(this.sendSensorData.bind(this, constants.HOT_ALERTS_UPDATE));
 
 		clientStore.on(webConfig.EVENT_CONNECTION, client => {
-			console.log("client added")
+			console.info("client added")
 			//socketIo.emitToOne(client, config.LIMITS_UPDATE, limitsStore.getState());
 		});
 

@@ -10,7 +10,7 @@ export default {
     init(server) {
         io = socket(server);
         io.on(webConfig.EVENT_CONNECTION, client => {
-            console.log("client connected");
+            console.info("client connected");
             clients.push(client);
 
             clientsStore.addClient(client);
