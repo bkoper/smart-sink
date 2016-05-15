@@ -7,7 +7,8 @@
     "start": "node ./build/server.entry.js",
     "build": "gulp build",
     "build:server": "npm run build -- --server",
-    "demo": "cross-env __demo=true node ./build/server.entry.js"
+    "demo": "cross-env __demo=true npm start",
+    "debug": "cross-env __debug=true npm start"
   },
   "author": "",
   "license": "ISC",

@@ -6,7 +6,7 @@ const coldDeviceId = "52bee04947e24a5da1dfa6b811949695";
 const hotDeviceToken = "29209169552c4d3697d64e0b686e7a28";
 const hotDeviceId = "8cab91bd1a584793b35996a611485928";
 
-const __debug = false;
+const __debug = process.env.__debug;
 
 class Sami {
     constructor(id, token) {
