@@ -31,16 +31,13 @@ $ npm i -g gulp // if you haven't done it before
 $ npm i
 ```
 
-**edit configs**
-- set IP and host at: ```./config/config.js```
-- example
-```javascript
-export default {
-    SERVER_IP: "0.0.0.0",
-    SERVER_PORT: "8081",
-    DOMAIN: "artik.local",
-...
-```
+**edit config file**
+- based on ```./config/sample_config.js``` create your own file and place it at: ```./config/config.js```,
+- set your server desire IP - it will be used for websocket connection (*most probably default settings will be ok*),
+- set local domain name for artik server (remember to put a record in your ```hosts``` file),
+- create an application in [artik.cloud portal](https://developer.artik.cloud/),
+    - update ```CLIENT_ID``` and ```CLIENT_SECRET``` values in config file,
+    - set proper redirection url in your artik cloud app configuration, it should be fullfill the pattern ```http://DOMAIN/auth/callback```
 
 **build front side**
 ```bash
