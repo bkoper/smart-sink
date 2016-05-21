@@ -1,7 +1,5 @@
-import Promise from 'bluebird';
-import r from 'request';
 import {fill, clone} from 'lodash';
-let request = Promise.promisify(r);
+import request from 'request-promise';
 
 const hotWaterSdid = '8cab91bd1a584793b35996a611485928';
 const coldWaterSdid = '52bee04947e24a5da1dfa6b811949695';
@@ -20,6 +18,9 @@ function makeRequest(prepare, prepareResponse) {
         .then(response => {
             datasets[1].data = prepareResponse(response, datasets[1].data);
             return datasets;
+        })
+        .catch(err => {
+            throw err;
         });
 }
 
@@ -86,7 +87,7 @@ function prepareRequest(sdid, startDate, endDate, interval, field) {
             field
         },
         headers: {
-            'Authorization': 'bearer b8671c51d05049799e37d4615c752d1c',
+            'Authorization': 'bearer 123212342',
             'Content-Type': 'application/json'
         }
     };

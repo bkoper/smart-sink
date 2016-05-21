@@ -10,5 +10,3 @@ socket.on(constants.HOT_SENSOR_UPDATE, data => hotSensorActions.update(data));
 socket.on(constants.COLD_SENSOR_UPDATE, data => coldSensorActions.update(data));
 socket.on(constants.HOT_ALERTS_UPDATE, data => hotAlertActions.update(data));
 socket.on(constants.COLD_ALERTS_UPDATE, data => coldAlertActions.update(data));
-//socket.on(config.LIMITS_UPDATE, data => coldLimitsActions.update(data));
-//socket.on(config.LIMITS_UPDATE, data => hotLimitsActions.update(data));
