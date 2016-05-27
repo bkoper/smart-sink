@@ -2,6 +2,7 @@ import express from 'express';
 import settings from './settings-store';
 import units from '../helpers/unit';
 import {dailyRequest, monthlyRequest, monthlyStatistics} from '../lib/request-sami';
+import auth from '../lib/auth';
 
 const router = express.Router();
 const demoData = {
@@ -10,7 +11,7 @@ const demoData = {
     stats: [[{"data":{"sdid":"8cab91bd1a584793b35996a611485928","startDate":"1456786800000","endDate":"1459461540000","field":"total","interval":"month","size":1,"data":[{"count":277,"min":0,"max":28,"mean":9.433213,"sum":2613,"variance":54.144455,"ts":1454284800000}]}},{"data":{"sdid":"52bee04947e24a5da1dfa6b811949695","startDate":"1456786800000","endDate":"1459461540000","field":"total","interval":"month","size":1,"data":[{"count":277,"min":0,"max":28,"mean":9.133574,"sum":2529.9998,"variance":55.14823,"ts":1454284800000}]}}],[{"data":{"sdid":"8cab91bd1a584793b35996a611485928","startDate":"1456786800000","endDate":"1459461540000","field":"avg","interval":"month","size":1,"data":[{"count":277,"min":0,"max":3,"mean":0.80144405,"sum":222,"variance":0.9244744,"ts":1454284800000}]}},{"data":{"sdid":"52bee04947e24a5da1dfa6b811949695","startDate":"1456786800000","endDate":"1459461540000","field":"avg","interval":"month","size":1,"data":[{"count":277,"min":0,"max":4,"mean":0.8231047,"sum":228,"variance":1.199755,"ts":1454284800000}]}}]]
 };
 const handleArtikCloudRequest = (demoField, request) => (req, res) => {
-    return process.env.__demo ? res.json(demoField) : request()
+    return process.env.__demo ? res.json(demoField) : request(req.session.token)
         .then(data => res.json(data))
         .catch(err => res.status(err.statusCode).end());
 };
@@ -40,5 +41,7 @@ router.route("/settings")
         settings.setState(body);
         res.status(201).json(body);
     });
+
+router.use('/auth', auth);
 
 export default router;

@@ -8,8 +8,8 @@ let arrayDefault = [];
 let datasets = [];
 let currentDate = new Date();
 
-function makeRequest(prepare, prepareResponse) {
-    let reqPrepare = prepare();
+function makeRequest(token, prepare, prepareResponse) {
+    let reqPrepare = prepare(token);
     return request(reqPrepare(hotWaterSdid))
         .then(response => {
             datasets[0].data = prepareResponse(response, datasets[0].data);
@@ -24,7 +24,7 @@ function makeRequest(prepare, prepareResponse) {
         });
 }
 
-function preapreDailyRequest() {
+function preapreDailyRequest(token) {
     let date = new Date();
     let startDate = (new Date(date.getFullYear(), date.getMonth(), date.getDay() )).valueOf();
     let endDate = (new Date(date.getFullYear(), date.getMonth(), date.getDay(), 23, 59)).valueOf();
@@ -34,7 +34,7 @@ function preapreDailyRequest() {
     arrayDefault = fill(arrayDefault, 0);
     datasets = [{ data: clone(arrayDefault)}, {data: clone(arrayDefault)}];
 
-    return sdid => prepareRequest(sdid, startDate, endDate, "hour", "total");
+    return sdid => prepareRequest(token, sdid, startDate, endDate, "hour", "total");
 }
 
 function preapreDailyResponse(response, arr) {
@@ -55,10 +55,10 @@ function prepareMonthlyRequest() {
     arrayDefault = fill(arrayDefault, 0);
     datasets = [{ data: clone(arrayDefault)}, {data: clone(arrayDefault)}];
 
-    return sdid => prepareRequest(sdid, startDate, endDate, "day", "total");
+    return sdid => prepareRequest(token, sdid, startDate, endDate, "day", "total");
 }
 
-function monthlyStatsRequest(field) {
+function monthlyStatsRequest(field, token) {
     let date = new Date();
     let startDate = (new Date(date.getFullYear(), date.getUTCMonth(), 1 )).valueOf();
     let endDate = (new Date(date.getFullYear(), date.getUTCMonth(), daysInMonth(date.getFullYear(), date.getUTCMonth()) , 23, 59)).valueOf();
@@ -67,7 +67,7 @@ function monthlyStatsRequest(field) {
     arrayDefault = fill(arrayDefault, 0);
     datasets = [{ data: clone(arrayDefault)}, {data: clone(arrayDefault)}];
 
-    return sdid => prepareRequest(sdid, startDate, endDate, "month", field);
+    return sdid => prepareRequest(token, sdid, startDate, endDate, "month", field);
 }
 
 function preapreMonthlyStatsResponse(response, arr) {
@@ -75,7 +75,7 @@ function preapreMonthlyStatsResponse(response, arr) {
     return arr;
 }
 
-function prepareRequest(sdid, startDate, endDate, interval, field) {
+function prepareRequest(token, sdid, startDate, endDate, interval, field) {
     return  {
         url: 'https://api.samsungsami.io/v1.1/messages/analytics/histogram',
         method: "GET",
@@ -106,14 +106,14 @@ function daysInMonth(month,year) {
     return new Date(year, month, 0).getDate();
 }
 
-let dailyRequest = () => makeRequest(preapreDailyRequest, preapreDailyResponse);
-let monthlyRequest = () => makeRequest(prepareMonthlyRequest, prepareMonthlyResponse);
-let monthlyStatistics = () => {
+let dailyRequest = token => makeRequest(token, preapreDailyRequest, preapreDailyResponse);
+let monthlyRequest = token => makeRequest(token, prepareMonthlyRequest, prepareMonthlyResponse);
+let monthlyStatistics = token => {
     let data = [];
-    return makeRequest(monthlyStatsRequest.bind(null, "total"), preapreMonthlyStatsResponse)
+    return makeRequest(token, monthlyStatsRequest.bind(null, "total", token), preapreMonthlyStatsResponse)
         .then(response => {
             data.push(response);
-            return makeRequest(monthlyStatsRequest.bind(null, "avg"), preapreMonthlyStatsResponse)
+            return makeRequest(token, monthlyStatsRequest.bind(null, "avg", token), preapreMonthlyStatsResponse)
         })
         .then(response => {
             data.push(response)
