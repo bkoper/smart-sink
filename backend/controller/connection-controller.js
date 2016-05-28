@@ -3,7 +3,7 @@ import {coldAlertStore, hotAlertStore} from '../model/alert-store';
 import clientStore from '../model/clients';
 import constants from '../../config/events';
 import socketIo from './../lib/websocket-service';
-import {coldSami, hotSami} from '../lib/websocket-sami';
+import {coldSami, hotSami} from '../lib/websocket-cloud';
 import webConfig from '../../config/config';
 import units from '../helpers/unit';
 

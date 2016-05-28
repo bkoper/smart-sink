@@ -1,27 +1,21 @@
+import authCloud from './auth-cloud';
 import WebSocket from 'ws';
-const webSocketURL = "wss://api.samsungsami.io/v1.1/websocket?ack=true";
-
-const coldDeviceToken = "156a0b9af21b46669f44e2653b24f9bf";
-const coldDeviceId = "52bee04947e24a5da1dfa6b811949695";
-const hotDeviceToken = "29209169552c4d3697d64e0b686e7a28";
-const hotDeviceId = "8cab91bd1a584793b35996a611485928";
-
+import config from '../../config/config';
 const __debug = process.env.__debug;
 
 class Sami {
-    constructor(id, token) {
+    constructor(id) {
         this.id = id;
-        this.token = token;
         this.isWebSocketReady = false;
         this.ws = null;
     }
 
     connect() {
-        this.ws = new WebSocket(webSocketURL);
+        this.ws = new WebSocket(config.CLOUD_SOCKET_URL);
 
         this.ws.on('open', () => {
             __debug && console.log("Websocket connection is open ....");
-            this.register(this.id, this.token);
+            this.register(this.id);
         });
 
         this.ws.on('message', (data, flags) => {
@@ -39,7 +33,7 @@ class Sami {
             let registerMessage = {
                 sdid: this.id,
                 type: "register",
-                Authorization: `bearer ${this.token}`
+                Authorization: `bearer ${authCloud.token}`
             };
             __debug && console.log(`Sending register message ${registerMessage}`);
             this.ws.send(JSON.stringify(registerMessage), {mask: true});
@@ -73,8 +67,8 @@ class Sami {
     }
 }
 
-let coldSami = new Sami(coldDeviceId, coldDeviceToken);
-let hotSami = new Sami(hotDeviceId, hotDeviceToken);
+let coldSami = new Sami(config.COLD_WATER_SDID, config.COLD_WATER_DEVICE_TOKEN);
+let hotSami = new Sami(config.HOT_WATER_SDID, config.HOT_WATER_DEVICE_TOKEN);
 
 coldSami.connect();
 hotSami.connect();

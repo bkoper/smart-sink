@@ -3,12 +3,11 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser   from 'body-parser';
 import express from 'express';
-import session from 'express-session';
 import statusContoller from './controller/status-controller';
 import connectionController from './controller/connection-controller';
 import ledController from './controller/led-controller';
 import alertController from './controller/alert-controller';
-import api from './model/api';
+import api from './routes/rest';
 import config from '../config/config';
 
 const host = config.SERVER_IP;
@@ -21,7 +20,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret: "e232r29123r34we"}));
 app.use('/rest', api);
 app.use(express.static(PUBLIC_DIR));
 
