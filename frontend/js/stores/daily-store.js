@@ -7,14 +7,24 @@ import $ from 'jquery';
 const DAILY_CHANGE_EVENT = 'dailyStore:change';
 const MONTHLY_CHANGE_EVENT = 'monthlyStore:change';
 const STATS_CHANGE_EVENT = 'stats:change';
+const STATUS_ERROR_EVENT = 'status:error';
+
 const URL_DAILY = '/rest/dailyStatus/';
 const URL_MONTHLY = '/rest/monthlyStatus/';
 const URL_STATS = '/rest/stats/';
 
 const DailyStatusStore = Object.assign({}, EventEmitter.prototype, {
-    emitChange(event, data){
+    emitChange(event, data = {}){
         this[event] = data;
         this.emit(event);
+    },
+
+    addErrorListener(callback) {
+        this.on(STATUS_ERROR_EVENT, callback);
+    },
+
+    removeErrorListener(callback) {
+        this.removeListener(STATUS_ERROR_EVENT, callback);
     },
 
     addStatsChangeListener(callback){
@@ -68,6 +78,7 @@ const DailyStatusStore = Object.assign({}, EventEmitter.prototype, {
                 break;
         }
         $.get(`http://${Config.DOMAIN}:${Config.SERVER_PORT}${url}`)
+            .fail(err => this.emitChange(STATUS_ERROR_EVENT))
             .done(data => this.emitChange(event, data));
     },
 

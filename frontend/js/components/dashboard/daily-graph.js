@@ -7,6 +7,7 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this._updateView = this._updateView.bind(this);
+        this._authorizationError = this._authorizationError.bind(this);
         let chartData = {
             labels: [
                 "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am",
@@ -14,22 +15,36 @@ export default class extends React.Component {
             datasets: []
         };
 
-        this.state = {chartData};
+        this.state = {
+            chartData,
+            authorization: true //default
+        };
     }
 
     componentWillMount() {
         dailyStore.addDailyChangeListener(this._updateView);
+        dailyStore.addErrorListener(this._authorizationError);
     }
 
     componentWillUnmount() {
         dailyStore.removeDailyChangeListener(this._updateView);
+        dailyStore.removeErrorListener(this._authorizationError);
+    }
+
+    _authorizationError() {
+        this.setState({
+            authorization: false
+        })
     }
 
     _updateView() {
         let dailyStatus = dailyStore.getDailyStatus();
         let chartData = this.state.chartData;
         chartData.datasets = dailyStatus;
-        this.setState({chartData});
+        this.setState({
+            chartData,
+            authorization: true
+        });
     }
 
     render() {
@@ -38,6 +53,7 @@ export default class extends React.Component {
                 title="Today's water usage - total"
                 subtitle="graph"
                 data={this.state.chartData}
+                authorization={this.state.authorization}
             />
         )
     }
