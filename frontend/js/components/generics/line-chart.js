@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {Line} from "react-chartjs";
 import Header from '../generics/page-header';
+import AuthButton from '../generics/auth-button';
 
 let chartData = {
     labels: [],
@@ -85,7 +86,9 @@ export default props => {
     return (
         <div>
             <Header subtitle="graph" title={props.title} />
-            <Line className="dailyGraph" redraw="true" data={data} options={options}/>
+            {props.authorization ?
+                <Line className="dailyGraph" redraw="true" data={data} options={options}/> :
+                <AuthButton />}
         </div>
     );
 }

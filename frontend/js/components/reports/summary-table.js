@@ -1,6 +1,5 @@
 import React from 'react';
 import Table from '../generics/table';
-import Header from '../generics/page-header';
 import dailyStore from '../../stores/daily-store';
 
 export default class extends React.Component {
@@ -48,11 +47,6 @@ export default class extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <Header subtitle="more info" title="Summary table"/>
-                <Table items={this.state.tableItems} />
-            </div>
-        )
+        return (<Table items={this.state.tableItems} />)
     }
 }
