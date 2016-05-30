@@ -5,7 +5,9 @@ let possibleValues = new Set();
 
 possibleValues
     .add(10)
+    .add(15)
     .add(20)
+    .add(25)
     .add(30);
 
 router.route("/saveMoney/:savingAmount")
