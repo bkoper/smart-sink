@@ -5,7 +5,7 @@ import Constants from '../../../config/events';
 import Config from '../../../config/config';
 import {dispatch, register} from '../dispatchers/app-dispatcher';
 
-let url = '/rest/settings';
+let url = '/restRoutes/settings';
 const CHANGE_EVENT = "LIMITS:UPDATE";
 const SAVE_EVENT = "LIMITS:SAVE";
 

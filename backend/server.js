@@ -7,7 +7,7 @@ import statusContoller from './controller/status-controller';
 import connectionController from './controller/connection-controller';
 import ledController from './controller/led-controller';
 import alertController from './controller/alert-controller';
-import api from './routes/rest';
+import restRoutes from './routes/';
 import config from '../config/config';
 
 const host = config.SERVER_IP;
@@ -20,7 +20,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/rest', api);
+app.use('/rest', restRoutes);
 app.use(express.static(PUBLIC_DIR));
 
 connectionController.init(server);
