@@ -9,9 +9,9 @@ const MONTHLY_CHANGE_EVENT = 'monthlyStore:change';
 const STATS_CHANGE_EVENT = 'statsRoute:change';
 const STATUS_ERROR_EVENT = 'status:error';
 
-const URL_DAILY = '/restRoutes/dailyStatus/';
-const URL_MONTHLY = '/restRoutes/monthlyStatus/';
-const URL_STATS = '/restRoutes/statsRoute/';
+const URL_DAILY = '/rest/dailyStatus/';
+const URL_MONTHLY = '/rest/monthlyStatus/';
+const URL_STATS = '/rest/stats/';
 
 const DailyStatusStore = Object.assign({}, EventEmitter.prototype, {
     emitChange(event, data = {}){
@@ -94,8 +94,6 @@ const DailyStatusStore = Object.assign({}, EventEmitter.prototype, {
                 DailyStatusStore.makeRequest(STATS_CHANGE_EVENT);
                 break;
         }
-
-        //DailyStatusStore.emitChange();
 
     })
 });

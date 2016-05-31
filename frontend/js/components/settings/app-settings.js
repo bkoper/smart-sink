@@ -6,7 +6,6 @@ import {generalActions, limitsGetAction, limitsSetAction} from '../../actions/ap
 import Constants from '../../../../config/events';
 import {Grid, Row, Col, Button, Input, Alert} from 'react-bootstrap';
 import limitsStore from '../../stores/limits-store';
-import $ from 'jquery';
 
 export default class extends React.Component {
     constructor() {

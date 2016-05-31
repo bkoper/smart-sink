@@ -6,7 +6,7 @@ import saveMoneyRoute from './saveMoney';
 
 const router = express.Router();
 
-router.route("/authRoute", authRoute);
+router.use("/auth", authRoute);
 router.use(statsRoute);
 router.use(settingsRoute);
 router.use(saveMoneyRoute);
