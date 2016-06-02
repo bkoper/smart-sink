@@ -1,6 +1,5 @@
 import React from 'react';
 import dailyStore from '../../stores/daily-store';
-import _ from 'lodash';
 import LineChart from '../generics/line-chart';
 
 export default class extends React.Component {

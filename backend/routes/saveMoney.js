@@ -1,4 +1,7 @@
 import express from 'express';
+import calculateSavings from '../model/save-money-store';
+import settingsStore from '../model/settings-store';
+import {defaults} from "lodash";
 
 const router = express.Router();
 let possibleValues = new Set();
@@ -13,13 +16,9 @@ possibleValues
 router.route("/saveMoney/:savingAmount")
     .get((req, res) => {
         if (possibleValues.has(+req.params.savingAmount)) {
-            res.json({
-                "streamLimit": "2.00",
-                "streamOpenTime": "4",
-                "streamLimitCrossed": "8",
-                "dailyUsage": "23.00",
-                "units": "gallons"
-            });
+            calculateSavings(+req.params.savingAmount)
+                .then( data => res.json(defaults(data, settingsStore.getState())))
+                .catch(err => res.status(err.statusCode).end());
         } else {
             res.status(404).end()
         }

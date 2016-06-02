@@ -7,6 +7,7 @@ import limitsStore from '../../stores/limits-store';
 import Constants from '../../../../config/events';
 import {Button, Input, Alert} from 'react-bootstrap';
 import Table from '../generics/table';
+import AuthButton from '../generics/auth-button';
 
 const defaultValue = 10;
 
@@ -14,6 +15,7 @@ export default class extends React.Component {
     constructor() {
         super();
         this.state = {
+            authorization: true,
             suggestions: null,
             savings: defaultValue
         };
@@ -23,6 +25,7 @@ export default class extends React.Component {
         this._onAlertDismiss = this._onAlertDismiss.bind(this);
         this._submitNewLimits = this._submitNewLimits.bind(this);
         this._onSave = this._onSave.bind(this);
+        this._authorizationError = this._authorizationError.bind(this);
     }
 
     componentDidMount() {
@@ -31,12 +34,20 @@ export default class extends React.Component {
 
     componentWillMount() {
         moneySavingStore.addChangeListener(this._updateLimitSuggestion);
+        moneySavingStore.addErrorListener(this._authorizationError);
         limitsStore.addSaveListener(this._onSave);
     }
 
     componentWillUnmount() {
         moneySavingStore.removeChangeListener(this._updateLimitSuggestion);
+        moneySavingStore.removeErrorListener(this._authorizationError);
         limitsStore.removeSaveListener(this._onSave);
+    }
+
+    _authorizationError() {
+        this.setState({
+            authorization: false
+        })
     }
 
     _onSave(success) {
@@ -64,10 +75,6 @@ export default class extends React.Component {
                 val2: `${suggestionsData.streamLimit} ${limitsData.units}`
             },
             {
-                label: 'open time limit',
-                val2: `${suggestionsData.streamOpenTime} seconds`
-            },
-            {
                 label: 'limit crossed warning level',
                 val2: `${suggestionsData.streamLimitCrossed} times`
             },
@@ -77,7 +84,7 @@ export default class extends React.Component {
             }
         ];
 
-        this.setState({suggestions, suggestionsData});
+        this.setState({suggestions, suggestionsData, authorization: true});
     }
 
     _getSavingsSuggestion() {
@@ -121,6 +128,10 @@ export default class extends React.Component {
 
                 <Button bsStyle='primary' onClick={this._getSavingsSuggestion}>get suggestions</Button>
 
+                {!this.state.authorization &&
+                    <div className="authorization-btn-container">
+                        <AuthButton />
+                    </div>}
 
                 { this.state.suggestions &&
                 <div>

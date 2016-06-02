@@ -55,12 +55,38 @@ function preapreMonthlyStatsResponse(response) {
     return JSON.parse(response);
 }
 
+function prepareLastMonthRequest() {
+    const date = new Date();
+    let lastMonth = date.getMonth() - 1;
+    let currentYear = date.getFullYear();
+
+    if (lastMonth < 0) {
+        currentYear--;
+        lastMonth = 11;
+    }
+
+    const startDate = (new Date(currentYear, lastMonth, 1 )).valueOf();
+    const endDate = (new Date(currentYear, lastMonth, daysInMonth(currentYear, lastMonth) , 23, 59)).valueOf();
+
+    return sdid => prepareRequest(sdid, startDate, endDate, "month", "total");
+}
+
+function prepareLastMotnthStatsResponse(response) {
+    let requestData = JSON.parse(response);
+
+    return {
+        sum: requestData.data[0].sum,
+        count: requestData.data[0].count
+    }
+}
+
 function daysInMonth(month,year) {
     return new Date(year, month, 0).getDate();
 }
 
 function prepareRequest(sdid, startDate, endDate, interval, field) {
      return  {
+        method: "GET",
         uri: config.CLOUD_REST_URL,
         qs: {
             startDate, //: '1456873200000',
@@ -108,4 +134,8 @@ let monthlyStatistics = () => {
             return data;
         });
 };
-export {dailyRequest, monthlyRequest, monthlyStatistics};
+let lastMonthStatistics = () => {
+    return makeRequest(prepareLastMonthRequest, prepareLastMotnthStatsResponse);
+};
+
+export {dailyRequest, monthlyRequest, monthlyStatistics, lastMonthStatistics};

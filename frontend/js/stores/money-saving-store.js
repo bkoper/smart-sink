@@ -6,6 +6,7 @@ import {register} from '../dispatchers/app-dispatcher';
 
 const url = '/rest/saveMoney/';
 const CHANGE_EVENT = "LIMITS:UPDATE";
+const STATUS_ERROR_EVENT = 'status:error';
 
 export default class MoneySavingStore extends EventEmitter {
     constructor() {
@@ -34,8 +35,17 @@ export default class MoneySavingStore extends EventEmitter {
         this.removeListener(CHANGE_EVENT, callback);
     }
 
+    addErrorListener(callback) {
+        this.on(STATUS_ERROR_EVENT, callback);
+    }
+
+    removeErrorListener(callback) {
+        this.removeListener(STATUS_ERROR_EVENT, callback);
+    }
+
     fetchState(value=10) {
         $.get(`http://${Config.DOMAIN}:${Config.SERVER_PORT}${url}${value}`)
+            .fail(err => this.emitChange(STATUS_ERROR_EVENT))
             .done(data => {
                 this.state = data;
                 this.emitChange(CHANGE_EVENT)
