@@ -15,16 +15,17 @@ class AppActions {
     }
 }
 
-let hotSensorActions = new AppActions(Constants.HOT_SENSOR_UPDATE);
-let coldSensorActions = new AppActions(Constants.COLD_SENSOR_UPDATE);
-let hotAlertActions = new AppActions(Constants.HOT_ALERTS_UPDATE);
-let coldAlertActions = new AppActions(Constants.COLD_ALERTS_UPDATE);
-let generalActions = new AppActions(Constants.CHANGE_PAGE_EVENT);
-let dailyStatusAction = new AppActions(Constants.DAILY_STATUS);
-let monthlyStatusAction = new AppActions(Constants.MONTHLY_STATUS);
-let monthlyStatsTableAction = new AppActions(Constants.MONTHLY_STATS);
-let limitsGetAction = new AppActions(Constants.LIMITS_GET);
-let limitsSetAction = new AppActions(Constants.LIMITS_SET);
+const hotSensorActions = new AppActions(Constants.HOT_SENSOR_UPDATE);
+const coldSensorActions = new AppActions(Constants.COLD_SENSOR_UPDATE);
+const hotAlertActions = new AppActions(Constants.HOT_ALERTS_UPDATE);
+const coldAlertActions = new AppActions(Constants.COLD_ALERTS_UPDATE);
+const generalActions = new AppActions(Constants.CHANGE_PAGE_EVENT);
+const dailyStatusAction = new AppActions(Constants.DAILY_STATUS);
+const monthlyStatusAction = new AppActions(Constants.MONTHLY_STATUS);
+const monthlyStatsTableAction = new AppActions(Constants.MONTHLY_STATS);
+const limitsGetAction = new AppActions(Constants.LIMITS_GET);
+const limitsSetAction = new AppActions(Constants.LIMITS_SET);
+const moneySaveAction = new AppActions(Constants.MONEY_SAVE_UPDATE);
 
 export {
     hotSensorActions,
@@ -36,5 +37,6 @@ export {
     monthlyStatusAction,
     monthlyStatsTableAction,
     limitsSetAction,
-    limitsGetAction
+    limitsGetAction,
+    moneySaveAction
 };

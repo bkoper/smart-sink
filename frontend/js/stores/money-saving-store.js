@@ -4,11 +4,11 @@ import Constants from '../../../config/events';
 import Config from '../../../config/config';
 import {register} from '../dispatchers/app-dispatcher';
 
-const url = '/rest/settings';
+const url = '/rest/saveMoney/';
 const CHANGE_EVENT = "LIMITS:UPDATE";
-const SAVE_EVENT = "LIMITS:SAVE";
+const STATUS_ERROR_EVENT = 'status:error';
 
-export default class LimitStore extends EventEmitter {
+export default class MoneySavingStore extends EventEmitter {
     constructor() {
         super();
 
@@ -21,7 +21,6 @@ export default class LimitStore extends EventEmitter {
         };
 
         this.init();
-        this.fetchState();
     }
 
     emitChange(event, data) {
@@ -32,32 +31,24 @@ export default class LimitStore extends EventEmitter {
         this.on(CHANGE_EVENT, callback);
     }
 
-    addSaveListener(callback) {
-        this.on(SAVE_EVENT, callback);
-    }
-
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     }
 
-    removeSaveListener(callback) {
-        this.removeListener(SAVE_EVENT, callback);
+    addErrorListener(callback) {
+        this.on(STATUS_ERROR_EVENT, callback);
     }
 
-    fetchState() {
-        $.get(`http://${Config.DOMAIN}:${Config.SERVER_PORT}${url}`)
+    removeErrorListener(callback) {
+        this.removeListener(STATUS_ERROR_EVENT, callback);
+    }
+
+    fetchState(value=10) {
+        $.get(`http://${Config.DOMAIN}:${Config.SERVER_PORT}${url}${value}`)
+            .fail(err => this.emitChange(STATUS_ERROR_EVENT))
             .done(data => {
                 this.state = data;
                 this.emitChange(CHANGE_EVENT)
-            });
-    }
-
-    setState(data) {
-        $.post(`http://${Config.DOMAIN}:${Config.SERVER_PORT}${url}`, data)
-            .fail(() => this.emitChange(SAVE_EVENT, false))
-            .done(data => {
-                this.state = data;
-                this.emitChange(SAVE_EVENT, true)
             });
     }
 
@@ -66,14 +57,10 @@ export default class LimitStore extends EventEmitter {
     }
 
     init() {
-
         this.dispatcherIndex = register(function (action) {
             switch (action.actionType) {
-                case Constants.LIMITS_GET:
-                    this.fetchState();
-                    break;
-                case Constants.LIMITS_SET:
-                    this.setState(action.item)
+                case Constants.MONEY_SAVE_UPDATE:
+                    this.fetchState(action.item);
                     break;
             }
 
@@ -81,4 +68,4 @@ export default class LimitStore extends EventEmitter {
     }
 }
 
-export default new LimitStore();
+export default new MoneySavingStore();

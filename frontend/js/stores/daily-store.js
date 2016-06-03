@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 const DAILY_CHANGE_EVENT = 'dailyStore:change';
 const MONTHLY_CHANGE_EVENT = 'monthlyStore:change';
-const STATS_CHANGE_EVENT = 'stats:change';
+const STATS_CHANGE_EVENT = 'statsRoute:change';
 const STATUS_ERROR_EVENT = 'status:error';
 
 const URL_DAILY = '/rest/dailyStatus/';
@@ -94,8 +94,6 @@ const DailyStatusStore = Object.assign({}, EventEmitter.prototype, {
                 DailyStatusStore.makeRequest(STATS_CHANGE_EVENT);
                 break;
         }
-
-        //DailyStatusStore.emitChange();
 
     })
 });
