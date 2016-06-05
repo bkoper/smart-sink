@@ -38,13 +38,26 @@ function callbackCold(value) {
 }
 
 function propagate(){
+    let yLedState;
+    let rLedState;
+    let gLedState;
+
     overallAlertStatus.limitPerStream = coldAlertStatus.limitPerStream || hotAlertStatus.limitPerStream;
     overallAlertStatus.openTime = coldAlertStatus.openTime || hotAlertStatus.openTime;
     overallAlertStatus.limitCrossedWarning = coldAlertStatus.limitCrossedWarning || hotAlertStatus.limitCrossedWarning;
     overallAlertStatus.dailyUsage = coldAlertStatus.dailyUsage || hotAlertStatus.dailyUsage;
 
-    (overallAlertStatus.openTime || overallAlertStatus.limitPerStream) ? yLed.turnOn() : yLed.turnOff();
-    overallAlertStatus.dailyUsage ? rLed.turnOn() : rLed.turnOff();
+    rLedState = overallAlertStatus.dailyUsage;
+    yLedState = (overallAlertStatus.openTime || overallAlertStatus.limitPerStream) && !rLedState;
+    gLedState = !(yLedState || rLedState);
 
-    (yLed.isOn() || rLed.isOn()) ? gLed.turnOff() : gLed.turnOn();
+    changeLedState(rLed, rLedState);
+    changeLedState(yLed, yLedState);
+    changeLedState(gLedState, gLedState);
+}
+
+function changeLedState(led, state) {
+    if(led.isOn() !== state) {
+        state ? led.turnOn() : led.turnOff();
+    }
 }
