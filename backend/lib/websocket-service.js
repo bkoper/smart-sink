@@ -1,5 +1,4 @@
 import socket from 'socket.io';
-import constants from '../../config/events';
 import webConfig from '../../config/config';
 import clientsStore from '../model/clients';
 
