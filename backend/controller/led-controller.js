@@ -53,7 +53,7 @@ function propagate(){
 
     changeLedState(rLed, rLedState);
     changeLedState(yLed, yLedState);
-    changeLedState(gLedState, gLedState);
+    changeLedState(gLed, gLedState);
 }
 
 function changeLedState(led, state) {

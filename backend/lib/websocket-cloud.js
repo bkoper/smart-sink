@@ -70,7 +70,4 @@ class Sami {
 let coldSami = new Sami(config.COLD_WATER_SDID, config.COLD_WATER_DEVICE_TOKEN);
 let hotSami = new Sami(config.HOT_WATER_SDID, config.HOT_WATER_DEVICE_TOKEN);
 
-coldSami.connect();
-hotSami.connect();
-
 export {coldSami, hotSami};

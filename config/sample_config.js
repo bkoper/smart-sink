@@ -10,6 +10,6 @@ export default {
     COLD_WATER_SDID: "52bee04947e24a5da1dfa6b811949695",
     HOT_WATER_DEVICE_TOKEN: "29209169552c4d3697d64e0b686e7a28",
     COLD_WATER_DEVICE_TOKEN: "156a0b9af21b46669f44e2653b24f9bf",
-    CLOUD_SOCKET_URL: "wss://statsRoute.samsungsami.io/v1.1/websocket?ack=true",
+    CLOUD_SOCKET_URL: "wss://api.artik.cloud/v1.1/websocket?ack=true",
     CLOUD_REST_URL: "https://statsRoute.samsungsami.io/v1.1/messages/analytics/histogram"
 };

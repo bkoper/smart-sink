@@ -1,5 +1,6 @@
 import config from '../../config/config';
 import OAuth2Strategy from "passport-oauth2";
+import {coldSami, hotSami} from '../lib/websocket-cloud';
 import passport from "passport";
 let authCloud = {};
 
@@ -13,6 +14,8 @@ passport.use(new OAuth2Strategy({
     function(accessToken, refreshToken, profile, done) {
         // it's only for server lifetime
         authCloud.token = accessToken;
+        coldSami.connect();
+        hotSami.connect();
         done();
     }
 ));
