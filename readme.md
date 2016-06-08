@@ -1,7 +1,7 @@
 # <a href="http://devpost.com/software/smart-sink-uwh1g4"><img src='http://i.imgur.com/f7DA08T.png' height='60'></a>
 Smart Sink is a platform for Artik, that lets you control your water usage by giving light notification whenever you cross usage limits. User can monitor whether you exceed daily or current water usage. It is entirely made in JavaScript, it uses React, Flux, Node.js and express. 
 
-[![IMAGE ALT TEXT HERE](http://i.imgur.com/ZujNV5p.png)](https://www.youtube.com/watch?v=9xehBpGf2wE)
+[![](http://i.imgur.com/ZujNV5p.png)](https://www.youtube.com/watch?v=9xehBpGf2wE)
 
 # Instalation
 
@@ -77,3 +77,17 @@ Selected project directories:
 - ```backend/lib/artik-suite``` - low level communication with GPIO
 - ```backend/lib/fakeSensors.js``` - sensor data simulation, for testing or demo purpose
 - ```backend/model/api.js``` - source file for ```/rest/*``` request communication
+
+## Diagrams
+
+### Overview design
+![Overview design](https://github.com/bkoper/smart-sink/blob/master/docs/min-overview-design.jpg?raw=true)
+
+### Board connections
+![Board connections](https://github.com/bkoper/smart-sink/blob/master/docs/min-board-connections.jpg?raw=true)
+
+### Server components
+![Server components](https://github.com/bkoper/smart-sink/blob/master/docs/min-server-components.jpg?raw=true)
+
+### Website components
+![Website components](https://github.com/bkoper/smart-sink/blob/master/docs/min-website-components.jpg?raw=true)
