@@ -1,7 +1,10 @@
 # <a href="http://devpost.com/software/smart-sink-uwh1g4"><img src='http://i.imgur.com/f7DA08T.png' height='60'></a>
-Smart Sink is a platform for Artik, that lets you control your water usage by giving light notification whenever you cross usage limits. User can monitor whether you exceed daily or current water usage. It is entirely made in JavaScript, it uses React, Flux, Node.js and express. 
 
 [![](http://i.imgur.com/ZujNV5p.png)](https://www.youtube.com/watch?v=9xehBpGf2wE)
+Smart Sink is a platform for Artik, that lets you control your water usage by giving light notification whenever you cross usage limits. User can monitor whether you exceed daily or current water usage. It is entirely made in JavaScript, it uses React, Flux, Node.js and express. 
+
+### Overview design
+![Overview design](https://github.com/bkoper/smart-sink/blob/master/docs/min-overview-design.jpg?raw=true)
 
 # Instalation
 
@@ -22,6 +25,9 @@ all connections remains the same.
 - all configuration related to PIN connection: ```backend/controller/status_controller```
 - by default signal cabel of cold sensor is connected to pin nb 8 of bridge J26, and hot sensor is connected to pin nb 9 of the same bridge
 - both sensors need to be power by 5V inputs as well
+
+### Board connections
+![Board connections](https://github.com/bkoper/smart-sink/blob/master/docs/min-board-connections.jpg?raw=true)
 
 ## Building project
 
@@ -79,12 +85,6 @@ Selected project directories:
 - ```backend/model/api.js``` - source file for ```/rest/*``` request communication
 
 ## Diagrams
-
-### Overview design
-![Overview design](https://github.com/bkoper/smart-sink/blob/master/docs/min-overview-design.jpg?raw=true)
-
-### Board connections
-![Board connections](https://github.com/bkoper/smart-sink/blob/master/docs/min-board-connections.jpg?raw=true)
 
 ### Server components
 ![Server components](https://github.com/bkoper/smart-sink/blob/master/docs/min-server-components.jpg?raw=true)
