@@ -6,15 +6,15 @@ const precision = 2;
 
 export default (value) => {
     return lastMonthStatistics().then(data => {
-        let sum = mean([data[0].data.sum, data[1].data.sum]);
-        let count = mean([data[0].data.count, data[1].data.count]);
-        let averageDailyUsage = (sum / avgDaysInMonth);
-        let averagePerStream = sum / count;
-        let dailyStreamNb = count / avgDaysInMonth;
+        const sum = mean([data[0].data.sum, data[1].data.sum]);
+        const count = mean([data[0].data.count, data[1].data.count]);
+        const averageDailyUsage = (sum / avgDaysInMonth);
+        const averagePerStream = sum / count;
+        const dailyStreamNb = count / avgDaysInMonth;
 
-        let dailyUsage = round(substractByValue(averageDailyUsage, value), precision);
-        let streamLimit = round(substractByValue(averagePerStream, value), precision);
-        let streamLimitCrossed =  round(substractByValue(dailyStreamNb, value) % 10, precision);
+        const dailyUsage = round(subtractByValue(averageDailyUsage, value), precision);
+        const streamLimit = round(subtractByValue(averagePerStream, value), precision);
+        const streamLimitCrossed =  round(subtractByValue(dailyStreamNb, value) % 10, precision);
 
         return {
             dailyUsage,
@@ -24,6 +24,6 @@ export default (value) => {
     });
 }
 
-function substractByValue(base, value) {
+function subtractByValue(base, value) {
     return base - value * 0.01 * base;
 }
