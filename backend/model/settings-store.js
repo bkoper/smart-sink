@@ -6,7 +6,7 @@ let DATA_PATH = './build/settings.data';
 let defaultLimits = {
     units: 'litres',
     streamLimit: 4, // litres
-    streamOpenTime: 4, // min
+    streamOpenTime: 4, // seconds
     streamLimitCrossed: 8,
     dailyUsage: 25 // litres
 };
