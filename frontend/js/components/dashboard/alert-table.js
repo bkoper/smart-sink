@@ -35,7 +35,7 @@ export default class extends React.Component {
 
         let itemList = [
             {
-                label: "water flown since last open",
+                label: "current water flown since last opening",
                 val1: `${coldSensorData.currentWaterFlown} ${settingsData.units}`,
                 val2: `${hotSensorData.currentWaterFlown} ${settingsData.units}`,
                 val1Info: coldAlertData.limitPerStream && "warning",
@@ -49,19 +49,19 @@ export default class extends React.Component {
                 val2Info: hotAlertData.limitCrossedWarning && "warning"
             },
             {
-                label:"average per usage",
+                label:"today's average usage speed",
                 val1: `${coldSensorData.avg} ml/min`,
                 val2: `${hotSensorData.avg} ml/min`
             },
             {
-                label: "since last opening",
+                label: "water flown since last opening",
                 val1: `${coldSensorData.streamOpenTime} s`,
                 val2: `${hotSensorData.streamOpenTime} s`,
                 val1Info: coldAlertData.openTime && "warning",
                 val2Info: hotAlertData.openTime && "warning"
             },
             {
-                label: "longest stream",
+                label: "longest stream time",
                 val1: `${coldSensorData.longestOpenedMinutes} s`,
                 val2: `${hotSensorData.longestOpenedMinutes} s`
             },
@@ -81,7 +81,7 @@ export default class extends React.Component {
     render() {
         return (
             <div>
-                <Header subtitle="live status" title="Today's summary"/>
+                <Header subtitle="live status" title="Usage summary"/>
                 <Table items={this.state.itemList} />
             </div>
         )

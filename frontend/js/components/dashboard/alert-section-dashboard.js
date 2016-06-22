@@ -27,12 +27,19 @@ export default class extends React.Component {
     }
 
     render() {
-        let coldWaterWarning = (this.state.coldAlertData.limitPerStream || this.state.coldAlertData.openTime) ?
-            <Label big="true" type="warning" txt="limit water stream"/> :
-            <Label big="true" type="success" txt="status ok"/>;
-        let hotWaterWarning = (this.state.hotAlertData.limitPerStream || this.state.hotAlertData.openTime) ?
-            <Label big="true" type="warning" txt="limit water stream"/> :
-            <Label big="true" type="success" txt="status ok"/>;
+        const coldWaterWarning = this.state.coldAlertData.dailyUsage ?
+            <Label big="true" type="danger" txt="Daily usage crossed"/>
+            :
+            (this.state.coldAlertData.limitPerStream || this.state.coldAlertData.openTime) ?
+                <Label big="true" type="warning" txt="limit water stream"/> :
+                <Label big="true" type="success" txt="status ok"/>;
+
+        const hotWaterWarning = this.state.hotAlertData.dailyUsage ?
+            <Label big="true" type="danger" txt="Daily usage crossed"/>
+            :
+            (this.state.hotAlertData.limitPerStream || this.state.hotAlertData.openTime) ?
+                <Label big="true" type="warning" txt="limit water stream"/> :
+                <Label big="true" type="success" txt="status ok"/>;
 
 
         return (
