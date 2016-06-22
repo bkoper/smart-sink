@@ -19,7 +19,10 @@ export default {
 
 		clientStore.on(webConfig.EVENT_CONNECTION, client => {
 			console.info("client added")
-			//socketIo.emitToOne(client, config.LIMITS_UPDATE, limitsStore.getState());
+
+			// socketIo.emitToOne(client, config.LIMITS_UPDATE, limitsStore.getState());
+			socketIo.emitToOne(client, constants.HOT_SENSOR_UPDATE, hotStatusStore.getData());
+			socketIo.emitToOne(client, constants.COLD_SENSOR_UPDATE, coldStatusStore.getData());
 		});
 
 		setInterval(() => {
