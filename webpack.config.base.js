@@ -51,7 +51,7 @@ var webpackFrontConfig = assign({}, webpackFrontConfig, webpackBaseConfig, {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "frontend/static/index_template.html"
+            template: "frontend/static/index.html"
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.ProvidePlugin({
