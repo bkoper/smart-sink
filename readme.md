@@ -32,7 +32,6 @@ all connections remains the same.
 
 **requirements installation**
 ```bash
-$ npm i -g gulp // if you haven't done it before
 $ npm i
 ```
 
@@ -46,12 +45,23 @@ $ npm i
 
 **build front side**
 ```bash
-$ npm run build
+$ npm run build:ui
 ```
 
 **build server side**
 ```bash
 $ npm run build:server
+```
+
+**build all modules**
+```bash
+$ npm run build
+```
+
+
+**build all modules in production version (no logs, no warnings, minimized libs)**
+```bash
+$ npm run prod
 ```
 
 **start the application**
@@ -63,6 +73,11 @@ your application will be accessible: ```http://domain:port/```
 **start the application in demo mode**
 ```
 $ npm run demo
+```
+
+**start debug mode**
+```
+$ npm run debug
 ```
 
 # Project structure
