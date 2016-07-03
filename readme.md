@@ -32,7 +32,6 @@ all connections remains the same.
 
 **requirements installation**
 ```bash
-$ npm i -g gulp // if you haven't done it before
 $ npm i
 ```
 
