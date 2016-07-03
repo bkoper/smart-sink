@@ -7,8 +7,8 @@ const BUILD_DIR = "build";
 
 const nodeModules = {};
 fs.readdirSync('node_modules')
-    .filter( x => ['.bin'].indexOf(x) === -1 )
-    .forEach( mod => nodeModules[mod] = 'commonjs ' + mod);
+    .filter(x => ['.bin'].indexOf(x) === -1)
+    .forEach(mod => nodeModules[mod] = 'commonjs ' + mod);
 
 const serverConfig = {
     entry: "./backend/server.js",
@@ -20,29 +20,45 @@ const serverConfig = {
     target: "node"
 };
 
-const uiConfig = {
-    entry: {
-        app:  "./frontend/js/main.js",
-        vendor: ['react', 'react-dom', 'events', 'socket.io-client', 'bootstrap', 'chart.js', 'lodash', 'jquery']
-    },
-    target: "web",
-    plugins: _.compact([
-        new HtmlWebpackPlugin({
-            template: "./frontend/static/index.html"
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        })
-    ])
+
+const uiConfig = prod => {
+    const ifProd = object => prod && object;
+
+    return {
+        entry: {
+            app: "./frontend/js/main.js",
+            vendor: ['react', 'react-dom', 'events', 'socket.io-client', 'bootstrap', 'chart.js', 'lodash', 'jquery']
+        },
+        target: "web",
+        plugins: _.compact([
+            new HtmlWebpackPlugin({
+                template: "./frontend/static/index.html"
+            }),
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery"
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor'
+            }),
+            ifProd(new webpack.optimize.DedupePlugin()),
+            ifProd(new webpack.LoaderOptionsPlugin({
+                minimize: true,
+                debug: false
+            })),
+            ifProd(new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    screw_ie8: true, // eslint-disable-lin
+                    warnings: false
+                }
+            }))
+        ])
+    }
 };
 
 module.exports = env => {
-    const filename  = env.server ? "server.entry.js" : "app.[name].[hash].js";
+    const filename = env.server ? "server.entry.js" : "app.[name].[hash].js";
 
     const config = {
         output: {
@@ -72,5 +88,5 @@ module.exports = env => {
         devtool: env.prod ? "eval" : "source-map"
     };
 
-    return Object.assign(config, env.server ? serverConfig : uiConfig);
+    return Object.assign(config, env.server ? serverConfig : uiConfig(env.prod));
 };
