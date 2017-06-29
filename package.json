@@ -8,7 +8,7 @@
     "clean": "rimraf build && mkdir build",
     "prebuild": "npm-run-all clean",
     "preprod": "npm-run-all clean",
-    "prebuild:ui": "cp -r ./frontend/static/img ./build/",
+    "prebuild:ui": "cp -r ./ui/static/img ./build/",
     "build": "npm-run-all --parallel build:*",
     "prod": "npm-run-all 'build:* -- --env.prod'",
     "build:ui": "webpack --env.test",

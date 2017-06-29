@@ -5,8 +5,8 @@ const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BUILD_PATH = path.resolve(__dirname, "./build/");
-const SERVER_PATH = path.resolve(__dirname, "./backend/server.js");
-const UI_PATH = path.resolve(__dirname, "./frontend/js/main.js");
+const SERVER_PATH = path.resolve(__dirname, "./server-side/server.js");
+const UI_PATH = path.resolve(__dirname, "./ui/js/main.js");
 
 const serverConfig = {
     entry: SERVER_PATH,
@@ -34,7 +34,7 @@ const uiConfig = prod => {
         target: "web",
         plugins: _.compact([
             new HtmlWebpackPlugin({
-                template: "./frontend/static/index.html"
+                template: "./ui/static/index.html"
             }),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.ProvidePlugin({

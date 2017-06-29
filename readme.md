@@ -10,7 +10,7 @@ Smart Sink is a platform for Artik, that lets you control your water usage by gi
 ## Hardware
 
 **connecting leds**
-- all configuration related to PIN connection: ```backend/controller/led_controller```
+- all configuration related to PIN connection: ```server-side/controller/led_controller```
 - by default leds are connected to bridge J26 in order [(check ARtik10 mapping)](https://developer.artik.io/documentation/developer-guide/gpio-mapping.html):
     -- pin 2 - green led
     -- pin 3 - yellow led
@@ -21,7 +21,7 @@ all connections remains the same.
 
 **water flow sensors**
 - for the purpose of this project I use model: YF-S201
-- all configuration related to PIN connection: ```backend/controller/status_controller```
+- all configuration related to PIN connection: ```server-side/controller/status_controller```
 - by default signal cabel of cold sensor is connected to pin nb 8 of bridge J26, and hot sensor is connected to pin nb 9 of the same bridge
 - both sensors need to be power by 5V inputs as well
 
@@ -87,16 +87,16 @@ In terms of low level communication please refer to other my projects:
 - [artik-io-devices](https://github.com/bkoper/artik-io-devices) - abstractions for handling devices such as LED and WaterFlow sensors.
 
 Selected project directories:
-- ```backend``` folder contains source files for server side
-- ```frontend``` - source of website
-- ```./frontend/js/constsants/config.js``` - IP and domain configuration (for both front and backend side)
-- ```frontend/main.js``` entry point to the application
+- ```server-side``` folder contains source files for server side
+- ```ui``` - source of website
+- ```./ui/js/constsants/config.js``` - IP and domain configuration (for both front and server side)
+- ```ui/main.js``` entry point to the application
 - ```components/app.js``` route component
-- store manages state of the application (same rule for both server and frontend side)
-- ```backend/server.js``` - start point for server side
-- ```backend/lib/artik-suite``` - low level communication with GPIO
-- ```backend/lib/fakeSensors.js``` - sensor data simulation, for testing or demo purpose
-- ```backend/model/api.js``` - source file for ```/rest/*``` request communication
+- store manages state of the application (same rule for both server and ui side)
+- ```server-side/server.js``` - start point for server side
+- ```server-side/lib/artik-suite``` - low level communication with GPIO
+- ```server-side/lib/fakeSensors.js``` - sensor data simulation, for testing or demo purpose
+- ```server-side/model/api.js``` - source file for ```/rest/*``` request communication
 
 ## Diagrams
 
