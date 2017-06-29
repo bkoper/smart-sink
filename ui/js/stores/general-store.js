@@ -1,6 +1,6 @@
-import {dispatch, register} from '../dispatchers/app-dispatcher';
-import Constants from '../../../config/events';
-import { EventEmitter } from 'events';
+import {register} from '../dispatchers/app-dispatcher';
+import {CHANGE_PAGE_EVENT} from '../../../config/events';
+import {EventEmitter} from 'events';
 
 const CHANGE_EVENT = 'change';
 
@@ -29,7 +29,7 @@ const GeneralStore = Object.assign({}, EventEmitter.prototype, {
 
     dispatcherIndex: register( function( action ){
         switch(action.actionType){
-            case Constants.CHANGE_PAGE_EVENT:
+            case CHANGE_PAGE_EVENT:
                 GeneralStore.changePage( action.item );
                 break;
         }

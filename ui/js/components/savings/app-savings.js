@@ -4,7 +4,7 @@ import Jumbotron from '../generics/jumbotron';
 import {generalActions, moneySaveAction, limitsSetAction} from '../../actions/app-actions';
 import moneySavingStore from '../../stores/money-saving-store';
 import limitsStore from '../../stores/limits-store';
-import Constants from '../../../../config/events';
+import {PAGE_SAVINGS} from '../../../../config/events';
 import {Button, Input, Alert} from 'react-bootstrap';
 import Table from '../generics/table';
 import AuthButton from '../generics/auth-button';
@@ -29,7 +29,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        generalActions.update(Constants.PAGE_SAVINGS);
+        generalActions.update(PAGE_SAVINGS);
     }
 
     componentWillMount() {

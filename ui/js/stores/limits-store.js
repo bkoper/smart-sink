@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import {EventEmitter} from 'events';
-import Constants from '../../../config/events';
+import {LIMITS_GET, LIMITS_SET} from '../../../config/events';
 import Config from '../../../config/config';
 import {register} from '../dispatchers/app-dispatcher';
 
@@ -69,10 +69,10 @@ class LimitStore extends EventEmitter {
 
         this.dispatcherIndex = register(function (action) {
             switch (action.actionType) {
-                case Constants.LIMITS_GET:
+                case LIMITS_GET:
                     this.fetchState();
                     break;
-                case Constants.LIMITS_SET:
+                case LIMITS_SET:
                     this.setState(action.item)
                     break;
             }

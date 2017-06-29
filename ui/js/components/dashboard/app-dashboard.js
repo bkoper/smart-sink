@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
 import {generalActions, dailyStatusAction, limitsGetAction} from '../../actions/app-actions';
-import Constants from '../../../../config/events';
+import {PAGE_DASHBOARD} from '../../../../config/events';
 import AlertSection from './alert-section-dashboard';
 import AlertTable from './alert-table';
 import LimitsTable from './limit-table';
@@ -11,7 +11,7 @@ import DailyGraph from './daily-graph';
 
 export default class Dashboard extends React.Component {
     componentDidMount() {
-        generalActions.update(Constants.PAGE_DASHBOARD);
+        generalActions.update(PAGE_DASHBOARD);
         dailyStatusAction.update();
         limitsGetAction.update();
     }

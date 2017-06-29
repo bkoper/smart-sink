@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import GeneralStore from '../../stores/general-store';
-import Constants from '../../../../config/events';
+import {PAGE_DASHBOARD, PAGE_REPORTS, PAGE_SETTINGS, PAGE_SAVINGS} from '../../../../config/events';
 
 export default class extends React.Component {
     constructor(props) {
@@ -31,16 +31,16 @@ export default class extends React.Component {
     render() {
         return (
             <ul className="app-menu nav nav-pills nav-stacked">
-                <li role="presentation" className={this._getClass(Constants.PAGE_DASHBOARD)}>
+                <li role="presentation" className={this._getClass(PAGE_DASHBOARD)}>
                     <Link to="/">Dashboard</Link>
                 </li>
-                <li role="presentation" className={this._getClass(Constants.PAGE_REPORTS)}>
+                <li role="presentation" className={this._getClass(PAGE_REPORTS)}>
                     <Link to="reports">Summary reports</Link>
                 </li>
-                <li role="presentation" className={this._getClass(Constants.PAGE_SETTINGS)}>
+                <li role="presentation" className={this._getClass(PAGE_SETTINGS)}>
                     <Link to="settings">Settings</Link>
                 </li>
-                <li role="presentation" className={this._getClass(Constants.PAGE_SAVINGS)}>
+                <li role="presentation" className={this._getClass(PAGE_SAVINGS)}>
                     <Link to="savings">Save money</Link>
                 </li>
             </ul>

@@ -3,7 +3,7 @@ import {debounce} from 'lodash';
 import Header from '../generics/page-header';
 import Jumbotron from '../generics/jumbotron';
 import {generalActions, limitsGetAction, limitsSetAction} from '../../actions/app-actions';
-import Constants from '../../../../config/events';
+import {PAGE_SETTINGS} from '../../../../config/events';
 import {Grid, Row, Col, Button, Input, Alert} from 'react-bootstrap';
 import limitsStore from '../../stores/limits-store';
 
@@ -36,7 +36,7 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        generalActions.update(Constants.PAGE_SETTINGS);
+        generalActions.update(PAGE_SETTINGS);
         limitsGetAction.update();
     }
 
@@ -160,7 +160,6 @@ export default class extends React.Component {
                     ref="units"
                     name="units"
                     type="select"
-                    label="Multiple Select"
                     label="Units"
                     value={this.state.units}
                     onChange={this._changeField}

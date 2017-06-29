@@ -1,5 +1,5 @@
-import {dispatch, register} from '../dispatchers/app-dispatcher';
-import Consts from '../../../config/events';
+import {register} from '../dispatchers/app-dispatcher';
+import {DAILY_STATUS, MONTHLY_STATUS, MONTHLY_STATS} from '../../../config/events';
 import Config from '../../../config/config';
 import {EventEmitter} from 'events';
 import $ from 'jquery';
@@ -84,13 +84,13 @@ const DailyStatusStore = Object.assign({}, EventEmitter.prototype, {
 
     dispatcherIndex: register( function( action ){
         switch(action.actionType){
-            case Consts.DAILY_STATUS:
+            case DAILY_STATUS:
                 DailyStatusStore.makeRequest(DAILY_CHANGE_EVENT);
                 break;
-            case Consts.MONTHLY_STATUS:
+            case MONTHLY_STATUS:
                 DailyStatusStore.makeRequest(MONTHLY_CHANGE_EVENT);
                 break;
-            case Consts.MONTHLY_STATS:
+            case MONTHLY_STATS:
                 DailyStatusStore.makeRequest(STATS_CHANGE_EVENT);
                 break;
         }

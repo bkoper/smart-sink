@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events';
-import constants from '../../config/events';
+import {HOT_ALERTS_UPDATE, COLD_ALERTS_UPDATE} from '../../config/events';
 
 class AlertStore extends EventEmitter {
     constructor(eventName) {
@@ -28,7 +28,7 @@ class AlertStore extends EventEmitter {
     }
 }
 
-let hotAlertStore = new AlertStore(constants.HOT_ALERTS_UPDATE);
-let coldAlertStore = new AlertStore(constants.COLD_ALERTS_UPDATE);
+let hotAlertStore = new AlertStore(HOT_ALERTS_UPDATE);
+let coldAlertStore = new AlertStore(COLD_ALERTS_UPDATE);
 
 export {coldAlertStore, hotAlertStore};

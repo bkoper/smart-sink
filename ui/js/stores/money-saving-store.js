@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import {EventEmitter} from 'events';
-import Constants from '../../../config/events';
+import {MONEY_SAVE_UPDATE} from '../../../config/events';
 import Config from '../../../config/config';
 import {register} from '../dispatchers/app-dispatcher';
 
@@ -59,7 +59,7 @@ class MoneySavingStore extends EventEmitter {
     init() {
         this.dispatcherIndex = register(function (action) {
             switch (action.actionType) {
-                case Constants.MONEY_SAVE_UPDATE:
+                case MONEY_SAVE_UPDATE:
                     this.fetchState(action.item);
                     break;
             }

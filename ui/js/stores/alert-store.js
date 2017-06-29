@@ -1,15 +1,15 @@
 import AppStore from './app-store';
-import Constants from '../../../config/events';
+import {HOT_ALERTS_UPDATE, COLD_ALERTS_UPDATE} from '../../../config/events';
 
-let alertState = {
+const alertState = {
     limitPerStream: false,
     openTime: false,
     limitCrossedWarning: false,
     dailyUsage: false
 };
 
-let hotAlertStore = new AppStore(Constants.HOT_ALERTS_UPDATE, alertState);
-let coldAlertStore = new AppStore(Constants.COLD_ALERTS_UPDATE, alertState);
+const hotAlertStore = new AppStore(HOT_ALERTS_UPDATE, alertState);
+const coldAlertStore = new AppStore(COLD_ALERTS_UPDATE, alertState);
 
 export {hotAlertStore, coldAlertStore};
 

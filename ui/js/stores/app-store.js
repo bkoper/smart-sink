@@ -1,5 +1,4 @@
-import {dispatch, register} from '../dispatchers/app-dispatcher';
-import Constants from '../../../config/events';
+import {register} from '../dispatchers/app-dispatcher';
 import { EventEmitter } from 'events';
 
 const CHANGE_EVENT = 'change';

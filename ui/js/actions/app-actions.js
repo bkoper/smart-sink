@@ -1,5 +1,5 @@
 import React from 'react';
-import Constants from '../../../config/events';
+import * as Constants from '../../../config/events';
 import {dispatch} from "../dispatchers/app-dispatcher";
 
 class AppActions {
