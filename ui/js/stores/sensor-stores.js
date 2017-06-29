@@ -1,7 +1,7 @@
 import AppStore from './app-store.js';
 import {HOT_SENSOR_UPDATE, COLD_SENSOR_UPDATE} from '../../../config/events';
 
-let sensorState = {
+const sensorState = {
     speed: 0,
     percentSpeed: 0,
     avg: 0,
@@ -12,7 +12,7 @@ let sensorState = {
     streamOpenTime: 0
 };
 
-let hotSensorStore = new AppStore(HOT_SENSOR_UPDATE, sensorState);
-let coldSensorStore = new AppStore(COLD_SENSOR_UPDATE, sensorState);
+const hotSensorStore = new AppStore(HOT_SENSOR_UPDATE, sensorState);
+const coldSensorStore = new AppStore(COLD_SENSOR_UPDATE, sensorState);
 
 export {hotSensorStore, coldSensorStore};

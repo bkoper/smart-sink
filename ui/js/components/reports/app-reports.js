@@ -12,9 +12,10 @@ import SummaryTable from './summary-table';
 export default class extends React.Component {
     constructor(props) {
         super(props);
-        let currentDate = new Date();
-        let days = (new Date(currentDate.getFullYear(), currentDate.getMonth(), 0)).getDate() + 1;
-        let chartData = {
+
+        const currentDate = new Date();
+        const days = (new Date(currentDate.getFullYear(), currentDate.getMonth(), 0)).getDate() + 1;
+        const chartData = {
             labels: _.range(1, days),
             datasets: [10,20]
         };
@@ -43,8 +44,8 @@ export default class extends React.Component {
     }
 
     _updateView() {
-        let dailyStatus = dailyStore.getMonthlyStatus();
-        let chartData = this.state.chartData;
+        const dailyStatus = dailyStore.getMonthlyStatus();
+        const chartData = this.state.chartData;
         chartData.datasets = dailyStatus;
         this.setState({
             chartData,

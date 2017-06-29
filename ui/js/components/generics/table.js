@@ -1,10 +1,8 @@
 import React from 'react';
 import Label from '../generics/warning-label';
 
-var data = [];
-
 export default (props) => {
-    var items = props.items.map( (item, i) => {
+    const items = props.items.map( (item, i) => {
         return (
             <tr key={i}>
                 <td>{item.label}</td>

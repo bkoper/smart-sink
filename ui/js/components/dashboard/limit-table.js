@@ -19,11 +19,10 @@ export default class extends React.Component {
     }
 
     _updateTable() {
-        let limitsData = limits.getState();
-        let coldLimitsState = limitsData;
-        let hotLimitsState = limitsData;
+        const limitsData = limits.getState();
+        const hotLimitsState = limitsData;
 
-        let tableItems = [
+        const tableItems = [
             {
                 label: 'litres per stream limit',
                 val2: `${hotLimitsState.streamLimit} ${limitsData.units}`

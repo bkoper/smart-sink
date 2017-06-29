@@ -16,7 +16,7 @@ class FakeDevice extends EventEmitter {
 			maxPercent: 0
 		};
 
-		let simulation = {
+		const simulation = {
 			data: [
 				{
 					speed: 0,
@@ -58,7 +58,7 @@ class FakeDevice extends EventEmitter {
 				return this.data[+this.index];
 			},
 			nextIndex() {
-				let length = this.data.length;
+				const length = this.data.length;
 				this.index = ++this.index % length;
 				return this.index;
 			},
@@ -95,7 +95,8 @@ class FakeDevice extends EventEmitter {
 	}
 
 	getData() {
-		var data = this.data;
+		const data = this.data;
+
 		return {
 			speed: Math.round(data.speed),
 			percentSpeed: data.percentSpeed,
@@ -114,7 +115,7 @@ FakeDevice.event = {
 	CHANGE: "CHANGE"
 };
 
-let coldSensor = new FakeDevice();
-let hotSensor = new FakeDevice();
+const coldSensor = new FakeDevice();
+const hotSensor = new FakeDevice();
 
 export {coldSensor, hotSensor};

@@ -60,7 +60,7 @@ export default class extends React.Component {
     }
 
     _changeField(e) {
-        var nextState = {};
+        let nextState = {};
         nextState[e.target.name] = +e.target.value;
         this.setState(nextState);
     }
@@ -69,7 +69,7 @@ export default class extends React.Component {
         const suggestionsData = moneySavingStore.getState();
         const limitsData = limitsStore.getState();
 
-        let suggestions = [
+        const suggestions = [
             {
                 label: 'litres per stream limit',
                 val2: `${suggestionsData.streamLimit} ${limitsData.units}`
@@ -100,8 +100,8 @@ export default class extends React.Component {
     }
 
     render() {
-        let suggestionTableTitle = `Suggestions for ${this.state.savings}% level savings`;
-        let message = (<Alert
+        const suggestionTableTitle = `Suggestions for ${this.state.savings}% level savings`;
+        const message = (<Alert
             className='none'
             bsStyle={this.state.bsStyle}
             onDismiss={this._onAlertDismiss}

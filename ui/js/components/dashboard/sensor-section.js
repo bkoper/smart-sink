@@ -1,14 +1,15 @@
-import React from 'react';
-import Header from '../generics/page-header';
-import CircleChart from '../generics/circle-chart';
-import {hotSensorStore, coldSensorStore} from '../../stores/sensor-stores';
-import {Col, Row, Carousel, CarouselItem} from 'react-bootstrap';
-import limits from '../../stores/limits-store';
-import _ from 'lodash';
+import React from "react";
+import Header from "../generics/page-header";
+import CircleChart from "../generics/circle-chart";
+import {hotSensorStore, coldSensorStore} from "../../stores/sensor-stores";
+import {Col, Row, Carousel, CarouselItem} from "react-bootstrap";
+import limits from "../../stores/limits-store";
+import _ from "lodash";
 
 export default class extends React.Component {
     constructor(props) {
         super(props);
+
         this._updateHotSensorView = _.throttle(this._updateHotSensorView.bind(this), 1000);
         this._updateColdSensorView =  _.throttle(this._updateColdSensorView.bind(this), 1000);
 
@@ -17,8 +18,8 @@ export default class extends React.Component {
         };
 
         this.subtitle = [
-            'current usage',
-            'daily usage limit'
+            "current usage",
+            "daily usage limit"
         ];
     }
 
@@ -37,10 +38,10 @@ export default class extends React.Component {
     }
 
     _updateHotSensorView() {
-        let hotStore = hotSensorStore.getState();
-        let limitsData = limits.getState();
-        let dailyUsage = limitsData.dailyUsage;
-        let limitPercent = Math.round((hotStore.total / dailyUsage) * 100);
+        const hotStore = hotSensorStore.getState();
+        const limitsData = limits.getState();
+        const dailyUsage = limitsData.dailyUsage;
+        const limitPercent = Math.round((hotStore.total / dailyUsage) * 100);
         this.setState({
             hotSensorData: hotStore,
             hotDailyLimitPercent: limitPercent,
@@ -49,10 +50,10 @@ export default class extends React.Component {
     }
 
     _updateColdSensorView() {
-        let coldStore = coldSensorStore.getState();
-        let limitsData = limits.getState();
-        let dailyUsage = limitsData.dailyUsage;
-        let limitPercent = Math.round((coldStore.total / dailyUsage) * 100);
+        const coldStore = coldSensorStore.getState();
+        const limitsData = limits.getState();
+        const dailyUsage = limitsData.dailyUsage;
+        const limitPercent = Math.round((coldStore.total / dailyUsage) * 100);
         this.setState({
             coldSensorData: coldStore,
             coldDailyLimitPercent: limitPercent,
@@ -60,12 +61,12 @@ export default class extends React.Component {
         });
     }
 
-    _onSelect(index, selectedDirection) {
+    _onSelect(index) {
         this.setState({index});
     }
 
     render() {
-        let title = `Live overview / ${this.subtitle[this.state.index]}`;
+        const title = `Live overview / ${this.subtitle[this.state.index]}`;
 
         return (
             <div>

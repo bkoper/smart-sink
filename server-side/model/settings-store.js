@@ -2,8 +2,8 @@ import jsonfile from 'jsonfile';
 import {defaults} from 'lodash';
 import units from '../helpers/unit';
 
-let DATA_PATH = './build/settings.data';
-let defaultLimits = {
+const DATA_PATH = './build/settings.data';
+const defaultLimits = {
     units: 'litres',
     streamLimit: 4, // litres
     streamOpenTime: 4, // seconds

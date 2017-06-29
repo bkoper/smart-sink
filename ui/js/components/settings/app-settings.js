@@ -51,7 +51,7 @@ export default class extends React.Component {
     }
 
     submitLimitForm() {
-        var limits = {
+        let limits = {
             streamLimit: 0,
             streamOpenTime: 0,
             streamLimitCrossed: 0,
@@ -69,7 +69,7 @@ export default class extends React.Component {
     }
 
     _changeField(e) {
-        var nextState = {};
+        let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }

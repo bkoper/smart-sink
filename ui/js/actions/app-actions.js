@@ -1,4 +1,3 @@
-import React from 'react';
 import * as Constants from '../../../config/events';
 import {dispatch} from "../dispatchers/app-dispatcher";
 

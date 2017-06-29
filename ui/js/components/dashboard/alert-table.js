@@ -27,13 +27,13 @@ export default class extends React.Component {
     }
 
     _updateTable() {
-        let hotSensorData = hotSensorStore.getState();
-        let coldSensorData = coldSensorStore.getState();
-        let hotAlertData = hotAlertStore.getState();
-        let coldAlertData = coldAlertStore.getState();
-        let settingsData = settings.getState();
+        const hotSensorData = hotSensorStore.getState();
+        const coldSensorData = coldSensorStore.getState();
+        const hotAlertData = hotAlertStore.getState();
+        const coldAlertData = coldAlertStore.getState();
+        const settingsData = settings.getState();
 
-        let itemList = [
+        const itemList = [
             {
                 label: "current water flown since last opening",
                 val1: `${coldSensorData.currentWaterFlown} ${settingsData.units}`,

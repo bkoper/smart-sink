@@ -21,8 +21,9 @@ export default class extends React.Component {
     }
 
     _updateState() {
-        let hotAlertData = hotAlertStore.getState();
-        let coldAlertData = coldAlertStore.getState();
+        const hotAlertData = hotAlertStore.getState();
+        const coldAlertData = coldAlertStore.getState();
+
         this.setState({hotAlertData, coldAlertData});
     }
 

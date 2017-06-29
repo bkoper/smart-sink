@@ -1,5 +1,5 @@
 import {register} from '../dispatchers/app-dispatcher';
-import { EventEmitter } from 'events';
+import {EventEmitter} from 'events';
 
 const CHANGE_EVENT = 'change';
 
