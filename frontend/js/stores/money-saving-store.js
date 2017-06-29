@@ -8,7 +8,7 @@ const url = '/rest/saveMoney/';
 const CHANGE_EVENT = "LIMITS:UPDATE";
 const STATUS_ERROR_EVENT = 'status:error';
 
-export default class MoneySavingStore extends EventEmitter {
+class MoneySavingStore extends EventEmitter {
     constructor() {
         super();
 
@@ -66,6 +66,6 @@ export default class MoneySavingStore extends EventEmitter {
 
         }.bind(this))
     }
-}
+};
 
 export default new MoneySavingStore();

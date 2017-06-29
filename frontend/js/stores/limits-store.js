@@ -8,7 +8,7 @@ const url = '/rest/settings';
 const CHANGE_EVENT = "LIMITS:UPDATE";
 const SAVE_EVENT = "LIMITS:SAVE";
 
-export default class LimitStore extends EventEmitter {
+class LimitStore extends EventEmitter {
     constructor() {
         super();
 

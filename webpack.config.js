@@ -1,33 +1,35 @@
+const path = require("path");
+const fs = require("fs");
 const _ = require("lodash");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const fs = require("fs");
-const path = require("path");
-const BUILD_DIR = "build";
-
-const nodeModules = {};
-fs.readdirSync('node_modules')
-    .filter(x => ['.bin'].indexOf(x) === -1)
-    .forEach(mod => nodeModules[mod] = 'commonjs ' + mod);
+const nodeExternals = require("webpack-node-externals");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BUILD_PATH = path.resolve(__dirname, "./build/");
+const SERVER_PATH = path.resolve(__dirname, "./backend/server.js");
+const UI_PATH = path.resolve(__dirname, "./frontend/js/main.js");
 
 const serverConfig = {
-    entry: "./backend/server.js",
-    externals: nodeModules,
-    resolve: {
-        root: path.join(__dirname),
-        fallback: path.join(__dirname, 'node_modules')
+    entry: SERVER_PATH,
+    output: {
+        path: BUILD_PATH,
+        filename: "server.entry.js"
     },
-    target: "node"
+    target: "node",
+    externals: nodeExternals()
 };
-
 
 const uiConfig = prod => {
     const ifProd = object => prod && object;
+    const vendors = ["react", "react-dom", "events", "socket.io-client", "bootstrap", "chart.js", "lodash", "jquery"];
 
     return {
         entry: {
-            app: "./frontend/js/main.js",
-            vendor: ['react', 'react-dom', 'events', 'socket.io-client', 'bootstrap', 'chart.js', 'lodash', 'jquery']
+            main: UI_PATH,
+            vendor: vendors
+        },
+        output: {
+            path: BUILD_PATH,
+            filename: "smartsink.[name][hash].js"
         },
         target: "web",
         plugins: _.compact([
@@ -40,7 +42,7 @@ const uiConfig = prod => {
                 jQuery: "jquery"
             }),
             new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor'
+                names: vendors.concat("manifest")
             }),
             ifProd(new webpack.optimize.DedupePlugin()),
             ifProd(new webpack.LoaderOptionsPlugin({
@@ -58,35 +60,29 @@ const uiConfig = prod => {
 };
 
 module.exports = env => {
-    const filename = env.server ? "server.entry.js" : "app.[name].[hash].js";
-
     const config = {
-        output: {
-            path: BUILD_DIR,
-            filename,
-            pathinfo: false
+        resolve: {
+            modules: ["node_modules"],
+            descriptionFiles: ["package.json"]
         },
-        bail: true,
         module: {
-            loaders: [
+            rules: [
                 {
-                    test: /\.js?$/,
-                    exclude: /(node_modules|bower_components)/,
-                    loader: "babel",
-                    query: {
+                    test: /(.js|.jsx)/,
+                    loader: "babel-loader",
+                    exclude: path.resolve(__dirname, "node_modules"),
+                    options: {
                         presets: ["es2015", "react", "stage-2"]
                     }
                 },
-                {test: /\.css$/, loader: 'style-loader!css-loader'},
-                {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
-                {test: /\.(woff|woff2)$/, loader: "url?prefix=font/&limit=5000"},
-                {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
-                {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"},
-                {test: /\.scss/, loaders: ["style", "css", "sass"]}
+                {test: /\.css$/, use: ["style-loader", "css-loader"]},
+                {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: "file-loader"},
+                {test: /\.(woff|woff2)$/, use: "url-loader?prefix=font/&limit=5000"},
+                {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: "url-loader?limit=10000&mimetype=application/octet-stream"},
+                {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: "url-loader?limit=10000&mimetype=image/svg+xml"},
+                {test: /\.scss/, use: ["style-loader", "css-loader", "sass-loader"]}
             ]
-        },
-        devtool: env.prod ? "eval" : "source-map"
+        }
     };
-
     return Object.assign(config, env.server ? serverConfig : uiConfig(env.prod));
 };
