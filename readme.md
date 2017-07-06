@@ -32,7 +32,7 @@ all connections remains the same.
 
 **requirements installation**
 ```bash
-$ npm i
+$ yarn
 ```
 
 **edit config file**
@@ -45,39 +45,39 @@ $ npm i
 
 **build front side**
 ```bash
-$ npm run build:ui
+$ yarn build:ui
 ```
 
 **build server side**
 ```bash
-$ npm run build:server
+$ yarn build:server
 ```
 
 **build all modules**
 ```bash
-$ npm run build
+$ yarn build
 ```
 
 
 **build all modules in production version (no logs, no warnings, minimized libs)**
 ```bash
-$ npm run prod
+$ yarn prod
 ```
 
 **start the application**
 ```
-$ npm start
+$ yarn start
 ```
 your application will be accessible: ```http://domain:port/```
 
 **start the application in demo mode**
 ```
-$ npm run demo
+$ yarn demo
 ```
 
 **start debug mode**
 ```
-$ npm run debug
+$ yarn debug
 ```
 
 # Project structure
