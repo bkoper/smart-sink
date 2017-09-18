@@ -3,7 +3,7 @@ import {defaults} from 'lodash';
 import units from '../helpers/unit';
 
 const DATA_PATH = './build/settings.data';
-let  defaultLimits = {
+let defaultLimits = {
     units: 'litres',
     streamLimit: 4, // litres
     streamOpenTime: 4, // seconds

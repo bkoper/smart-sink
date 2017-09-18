@@ -8,10 +8,8 @@ import connectionController from './controller/connection-controller';
 import ledController from './controller/led-controller';
 import alertController from './controller/alert-controller';
 import restRoutes from './routes/';
-import config from '../config/config';
+import {SERVER_IP, SERVER_PORT} from '../config/config';
 
-const host = config.SERVER_IP;
-const port = config.SERVER_PORT;
 const app = express();
 const server = http.createServer(app);
 const PUBLIC_DIR = './build/'; //path.join(__dirname, '..', 'build');
@@ -28,4 +26,4 @@ statusContoller.init();
 alertController.init();
 !process.env.__demo && ledController.init();
 
-server.listen(port, host, () => console.info(`server runing at ${host}:${port}`));
+server.listen(SERVER_PORT, SERVER_IP, () => console.info(`server runing at ${SERVER_IP}:${SERVER_PORT}`));
